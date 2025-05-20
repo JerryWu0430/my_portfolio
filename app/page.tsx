@@ -286,16 +286,16 @@ export default function Portfolio() {
   const SocialAndResume = ({ className = "" }: { className?: string }) => (
     <div className={`flex flex-wrap items-center gap-y-4 ${className}`}>
       <div className="flex gap-6 mr-8">
-        <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+        <Link href="https://www.linkedin.com/in/jerrywu0430" target="_blank" aria-label="LinkedIn">
           <Linkedin className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
-        <Link href="https://github.com" target="_blank" aria-label="GitHub">
+        <Link href="https://github.com/JerryWu0430" target="_blank" aria-label="GitHub">
           <Github className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
-        <Link href="mailto:jerry@example.com" aria-label="Email">
+        <Link href="mailto:woohaoran@gmail.com" aria-label="Email">
           <Mail className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
-        <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <Link href="https://www.instagram.com/jerrywu0430" target="_blank" aria-label="Instagram">
           <Instagram className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
       </div>
@@ -383,6 +383,7 @@ export default function Portfolio() {
           {scrolled ? (
             <div className="transition-all duration-700">
               <motion.h1
+                key="scrolled-title"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-3xl md:text-4xl font-bold"
@@ -390,6 +391,7 @@ export default function Portfolio() {
                 Jerry Wu
               </motion.h1>
               <motion.h2
+                key="scrolled-subtitle"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
@@ -398,6 +400,7 @@ export default function Portfolio() {
                 Software Engineer
               </motion.h2>
               <motion.div
+                key="scrolled-location"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -408,6 +411,7 @@ export default function Portfolio() {
               </motion.div>
               {!isShortWindow && (
                 <motion.p
+                  key="scrolled-description"
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -421,7 +425,7 @@ export default function Portfolio() {
           ) : (
             <AnimatePresence mode="wait">
               <motion.h1
-                key="long-title"
+                key="initial-title"
                 initial="initial"
                 animate={isTransitioning ? "pixelate" : "initial"}
                 exit="exit"
@@ -430,6 +434,7 @@ export default function Portfolio() {
               >
                 Hi, I'm Jerry Wu{" "}
                 <motion.span
+                  key="wave-emoji"
                   animate={{
                     rotate: [0, 10, 0],
                     transformOrigin: "bottom right",
@@ -446,6 +451,7 @@ export default function Portfolio() {
                 </motion.span>
               </motion.h1>
               <motion.p
+                key="initial-description"
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="mt-4 max-w-xs md:max-w-sm text-sm md:text-base text-gray-300"
@@ -454,7 +460,7 @@ export default function Portfolio() {
                 and engaging user experiences that solve real-world problems.
               </motion.p>
               {/* Social Media Icons and Resume Button - Initially under About Me */}
-              <motion.div initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="mt-6">
+              <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="mt-6">
                 <SocialAndResume />
               </motion.div>
             </AnimatePresence>
