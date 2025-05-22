@@ -199,14 +199,19 @@ function DitheredWaves({
     }
   });
 
-  const handlePointerMove = (e: ThreeEvent<PointerEvent>) => {
+  // Global mouse move handler for interaction even with pointer-events: none
+  useEffect(() => {
     if (!enableMouseInteraction) return;
-    const rect = gl.domElement.getBoundingClientRect();
-    const dpr = gl.getPixelRatio();
-    const x = (e.clientX - rect.left) * dpr;
-    const y = (e.clientY - rect.top) * dpr;
-    setMousePos({ x, y });
-  };
+    function handleMouseMove(e: MouseEvent) {
+      const rect = gl.domElement.getBoundingClientRect();
+      const dpr = gl.getPixelRatio();
+      const x = (e.clientX - rect.left) * dpr;
+      const y = (e.clientY - rect.top) * dpr;
+      setMousePos({ x, y });
+    }
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [enableMouseInteraction, gl]);
 
   return (
     <>
@@ -219,10 +224,9 @@ function DitheredWaves({
         />
       </mesh>
       <mesh
-        onPointerMove={handlePointerMove}
         position={[0, 0, 0.01]}
         scale={[viewport.width, viewport.height, 1]}
-        visible={false}
+        //visible={false}
       >
         <planeGeometry args={[1, 1]} />
         <meshBasicMaterial transparent opacity={0} />

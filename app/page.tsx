@@ -203,7 +203,7 @@ export default function Portfolio() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-sm flex flex-col p-8 pt-16"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex flex-col p-8 pt-16"
           >
             <nav className="flex flex-col space-y-6 mt-8">
               <NavItem
@@ -357,7 +357,7 @@ export default function Portfolio() {
   return (
     <main className="min-h-screen text-white overflow-x-hidden relative">
       {/* Background */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-50 pointer-events-none">
         <Dither
           waveColor={[0.2, 0.2, 0.2]}
           disableAnimation={false}
@@ -380,10 +380,10 @@ export default function Portfolio() {
           ref={headerRef}
           className={`transition-all duration-700 ease-in-out ${
             scrolled && !isShortWindow
-              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-30"
+              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-50"
               : scrolled && isShortWindow
-                ? "relative w-full pt-6 md:pt-10 px-6 md:px-8 md:pl-8 lg:pl-32 z-30 mb-20"
-                : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-30"
+                ? "relative w-full pt-6 md:pt-10 px-6 md:px-8 md:pl-8 lg:pl-32 z-50 mb-20"
+                : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-50"
           }`}
         >
           {scrolled ? (
@@ -530,7 +530,7 @@ export default function Portfolio() {
       </div>
 
       {/* Section 1 - About Me */}
-      <section ref={section1Ref} id="section1" className="min-h-screen relative">
+      <section ref={section1Ref} id="section1" className="min-h-screen relative z-50">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -559,7 +559,7 @@ export default function Portfolio() {
       </section>
 
       {/* Section 2 - Experiences */}
-      <section ref={section2Ref} id="section2" className="min-h-screen relative">
+      <section ref={section2Ref} id="section2" className="min-h-screen relative z-50">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -596,7 +596,7 @@ export default function Portfolio() {
       </section>
 
       {/* Section 3 - Education */}
-      <section ref={section3Ref} id="section3" className="min-h-screen relative">
+      <section ref={section3Ref} id="section3" className="min-h-screen relative z-50">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -625,7 +625,7 @@ export default function Portfolio() {
       </section>
 
       {/* Section 4 - Projects */}
-      <section ref={section4Ref} id="section4" className="min-h-screen relative">
+      <section ref={section4Ref} id="section4" className="min-h-screen relative z-50">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
