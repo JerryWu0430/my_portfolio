@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { RainbowButton } from "@/components/ui/rainbow-button"
 import { useMobile } from "@/hooks/use-mobile"
 import { useWindowSize } from "@/hooks/use-window-size"
+import Dither from "@/components/Dither"
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
@@ -355,6 +356,20 @@ export default function Portfolio() {
 
   return (
     <main className="min-h-screen text-white overflow-x-hidden relative">
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <Dither
+          waveColor={[0.2, 0.2, 0.2]}
+          disableAnimation={false}
+          enableMouseInteraction={true}
+          mouseRadius={0.3}
+          colorNum={4}
+          waveAmplitude={0.3}
+          waveFrequency={3}
+          waveSpeed={0.05}
+        />
+      </div>
+
       {/* Mobile Navigation */}
       {isMobile && <MobileNav />}
       
@@ -512,13 +527,6 @@ export default function Portfolio() {
             </motion.div>
           </motion.div>
         )}
-
-        {/* GIF Placeholder */}
-        <div className="absolute top-1/2 right-[5%] md:right-[10%] transform -translate-y-1/2 hidden md:block">
-          <div className="w-[200px] h-[200px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px] border border-gray-700 flex items-center justify-center">
-            <p className="text-gray-500">Cool GIF coming soon</p>
-          </div>
-        </div>
       </div>
 
       {/* Section 1 - About Me */}
