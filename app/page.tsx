@@ -9,6 +9,9 @@ import { RainbowButton } from "@/components/ui/rainbow-button"
 import { useMobile } from "@/hooks/use-mobile"
 import { useWindowSize } from "@/hooks/use-window-size"
 import Dither from "@/components/Dither"
+import Lanyard from "@/components/lanyard"
+import { Canvas } from "@react-three/fiber"
+import * as THREE from "three"
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
@@ -374,7 +377,10 @@ export default function Portfolio() {
       {isMobile && <MobileNav />}
       
       {/* Hero Section */}
-      <div className="relative min-h-screen">
+      <div className="relative min-h-screen h-screen">
+        <div className="absolute inset-0 z-50 w-full h-full pointer-events-none">
+          <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+        </div>
         {/* Replace the header div (the one with ref={headerRef}) with this updated version: */}
         <div
           ref={headerRef}
