@@ -7,7 +7,6 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { RainbowButton } from "@/components/ui/rainbow-button"
 import { useMobile } from "@/hooks/use-mobile"
-// Add a custom hook to detect window height
 import { useWindowSize } from "@/hooks/use-window-size"
 
 export default function Portfolio() {
@@ -118,7 +117,7 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
+  const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
     if (ref.current) {
       // Set flag to indicate we're scrolling programmatically
       setIsProgrammaticScroll(true)
@@ -158,128 +157,6 @@ export default function Portfolio() {
       filter: "blur(0px)",
       scale: 1,
     },
-  }
-
-  const NavItem = ({
-    sectionRef,
-    label,
-    scrollToSection,
-    activeSection,
-    sectionId,
-  }: {
-    sectionRef: React.RefObject<HTMLElement>
-    label: string
-    scrollToSection: (ref: React.RefObject<HTMLElement>) => void
-    activeSection: string
-    sectionId: string
-  }) => {
-    const isActive = activeSection === sectionId
-    const isHovered = hoveredSection === sectionId && !isActive // Only consider hovered if not active
-    const wasJustActivated = activeSection === sectionId && prevActiveSection !== sectionId
-
-    // Animation duration is now much shorter
-    const animationDuration = 0.15 // 150ms
-
-    return (
-      <div className="relative py-1.5">
-        <button
-          onClick={() => scrollToSection(sectionRef)}
-          className="group flex items-center text-sm font-light"
-          onMouseEnter={() => setHoveredSection(sectionId)}
-          onMouseLeave={() => setHoveredSection(null)}
-        >
-          <div className="flex items-center">
-            {/* Line container with fixed width to prevent layout shifts */}
-            <div className="w-24 relative flex items-center">
-              {/* Active section line - with conditional animation */}
-              {isActive && (
-                <>
-                  {/* Only animate when section first becomes active and not during programmatic scroll */}
-                  {wasJustActivated && !isProgrammaticScroll ? (
-                    <motion.div
-                      className="absolute h-[1px] bg-white"
-                      initial={{ width: "2rem", opacity: 0.7 }}
-                      animate={{ width: "4rem", opacity: 1 }}
-                      transition={{ duration: animationDuration, ease: "easeInOut" }}
-                    />
-                  ) : (
-                    /* Static elongated line for already active section */
-                    <div
-                      className="absolute h-[1px] bg-white"
-                      style={{
-                        width: "4rem",
-                        opacity: 1,
-                      }}
-                    />
-                  )}
-                </>
-              )}
-
-              {/* Hovered section line (only shown if section is not active) */}
-              {isHovered && !isActive && (
-                <motion.div
-                  className="absolute h-[1px] bg-white"
-                  initial={{ width: "2rem", opacity: 0.7 }}
-                  animate={{ width: "4rem", opacity: 1 }}
-                  exit={{ width: "2rem", opacity: 0.7 }}
-                  transition={{ duration: animationDuration, ease: "easeInOut" }}
-                />
-              )}
-
-              {/* Inactive line (only shown if not active and not hovered) */}
-              {!isActive && !isHovered && (
-                <div
-                  className="absolute h-[1px] bg-gray-600"
-                  style={{
-                    width: "2rem",
-                    opacity: 0.7,
-                  }}
-                />
-              )}
-            </div>
-
-            {/* Text - with conditional animation */}
-            {isActive && (
-              <>
-                {/* Only animate text when section first becomes active and not during programmatic scroll */}
-                {wasJustActivated && !isProgrammaticScroll ? (
-                  <motion.span
-                    className="text-white -ml-4"
-                    initial={{ x: 0 }}
-                    animate={{ x: 8 }}
-                    transition={{ duration: animationDuration, ease: "easeInOut" }}
-                  >
-                    {label}
-                  </motion.span>
-                ) : (
-                  /* Static positioned text for already active section */
-                  <div
-                    className="text-white -ml-4"
-                    style={{
-                      transform: "translateX(8px)",
-                    }}
-                  >
-                    {label}
-                  </div>
-                )}
-              </>
-            )}
-
-            {/* Hovered or inactive text */}
-            {!isActive && (
-              <motion.span
-                className={`${isHovered ? "text-white" : "text-gray-400"} -ml-4`}
-                initial={{ x: 0 }}
-                animate={{ x: isHovered ? 8 : 0 }}
-                transition={{ duration: animationDuration, ease: "easeInOut" }}
-              >
-                {label}
-              </motion.span>
-            )}
-          </div>
-        </button>
-      </div>
-    )
   }
 
   // Social Icons and Resume Button component for reuse
@@ -328,30 +205,34 @@ export default function Portfolio() {
             className="fixed inset-0 z-40 bg-black/95 backdrop-blur-sm flex flex-col p-8 pt-16"
           >
             <nav className="flex flex-col space-y-6 mt-8">
-              <button
-                onClick={() => scrollToSection(section1Ref)}
-                className={`text-left text-lg py-2 ${activeSection === "section1" ? "text-white" : "text-gray-400"}`}
-              >
-                About Me
-              </button>
-              <button
-                onClick={() => scrollToSection(section2Ref)}
-                className={`text-left text-lg py-2 ${activeSection === "section2" ? "text-white" : "text-gray-400"}`}
-              >
-                Experiences
-              </button>
-              <button
-                onClick={() => scrollToSection(section3Ref)}
-                className={`text-left text-lg py-2 ${activeSection === "section3" ? "text-white" : "text-gray-400"}`}
-              >
-                Education
-              </button>
-              <button
-                onClick={() => scrollToSection(section4Ref)}
-                className={`text-left text-lg py-2 ${activeSection === "section4" ? "text-white" : "text-gray-400"}`}
-              >
-                Projects
-              </button>
+              <NavItem
+                sectionRef={section1Ref}
+                label="About Me"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section1"
+              />
+              <NavItem
+                sectionRef={section2Ref}
+                label="Experiences"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section2"
+              />
+              <NavItem
+                sectionRef={section3Ref}
+                label="Education"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section3"
+              />
+              <NavItem
+                sectionRef={section4Ref}
+                label="Projects"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section4"
+              />
             </nav>
             <div className="mt-auto mb-8">
               <SocialAndResume />
@@ -362,11 +243,121 @@ export default function Portfolio() {
     </>
   )
 
+  const NavItem = ({
+    sectionRef,
+    label,
+    scrollToSection,
+    activeSection,
+    sectionId,
+  }: {
+    sectionRef: React.RefObject<HTMLElement | null>
+    label: string
+    scrollToSection: (ref: React.RefObject<HTMLElement | null>) => void
+    activeSection: string
+    sectionId: string
+  }) => {
+    const isActive = activeSection === sectionId
+    const isHovered = hoveredSection === sectionId && !isActive
+    const wasJustActivated = activeSection === sectionId && prevActiveSection !== sectionId
+    const animationDuration = 0.15
+
+    return (
+      <div className="relative py-1.5">
+        <button
+          onClick={() => scrollToSection(sectionRef)}
+          className="group flex items-center text-sm font-light"
+          onMouseEnter={() => setHoveredSection(sectionId)}
+          onMouseLeave={() => setHoveredSection(null)}
+        >
+          <div className="flex items-center">
+            <div className="w-24 relative flex items-center">
+              {isActive && (
+                <>
+                  {wasJustActivated && !isProgrammaticScroll ? (
+                    <motion.div
+                      className="absolute h-[1px] bg-white"
+                      initial={{ width: "2rem", opacity: 0.7 }}
+                      animate={{ width: "4rem", opacity: 1 }}
+                      transition={{ duration: animationDuration, ease: "easeInOut" }}
+                    />
+                  ) : (
+                    <div
+                      className="absolute h-[1px] bg-white"
+                      style={{
+                        width: "4rem",
+                        opacity: 1,
+                      }}
+                    />
+                  )}
+                </>
+              )}
+
+              {isHovered && !isActive && (
+                <motion.div
+                  className="absolute h-[1px] bg-white"
+                  initial={{ width: "2rem", opacity: 0.7 }}
+                  animate={{ width: "4rem", opacity: 1 }}
+                  exit={{ width: "2rem", opacity: 0.7 }}
+                  transition={{ duration: animationDuration, ease: "easeInOut" }}
+                />
+              )}
+
+              {!isActive && !isHovered && (
+                <div
+                  className="absolute h-[1px] bg-gray-600"
+                  style={{
+                    width: "2rem",
+                    opacity: 0.7,
+                  }}
+                />
+              )}
+            </div>
+
+            {isActive && (
+              <>
+                {wasJustActivated && !isProgrammaticScroll ? (
+                  <motion.span
+                    className="text-white -ml-4"
+                    initial={{ x: 0 }}
+                    animate={{ x: 8 }}
+                    transition={{ duration: animationDuration, ease: "easeInOut" }}
+                  >
+                    {label}
+                  </motion.span>
+                ) : (
+                  <div
+                    className="text-white -ml-4"
+                    style={{
+                      transform: "translateX(8px)",
+                    }}
+                  >
+                    {label}
+                  </div>
+                )}
+              </>
+            )}
+
+            {!isActive && (
+              <motion.span
+                className={`${isHovered ? "text-white" : "text-gray-400"} -ml-4`}
+                initial={{ x: 0 }}
+                animate={{ x: isHovered ? 8 : 0 }}
+                transition={{ duration: animationDuration, ease: "easeInOut" }}
+              >
+                {label}
+              </motion.span>
+            )}
+          </div>
+        </button>
+      </div>
+    )
+  }
+
   return (
-    <main className="min-h-screen bg-black text-white overflow-x-hidden">
+    <main className="min-h-screen text-white overflow-x-hidden relative">
       {/* Mobile Navigation */}
       {isMobile && <MobileNav />}
-
+      
       {/* Hero Section */}
       <div className="relative min-h-screen">
         {/* Replace the header div (the one with ref={headerRef}) with this updated version: */}
