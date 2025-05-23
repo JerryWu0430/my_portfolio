@@ -378,8 +378,8 @@ export default function Portfolio() {
       
       {/* Hero Section */}
       <div className="relative min-h-screen h-screen">
-        <div className="absolute inset-0 z-50 w-full h-full pointer-events-none">
-          <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-[9999]" style={{ transform: "translateX(20vw)"}}>
+            <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
         </div>
         {/* Replace the header div (the one with ref={headerRef}) with this updated version: */}
         <div
