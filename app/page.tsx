@@ -360,9 +360,9 @@ export default function Portfolio() {
   return (
     <main className="min-h-screen text-white overflow-x-hidden relative">
       {/* Background */}
-      <div className="fixed inset-0 z-50 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <Dither
-          waveColor={[0.2, 0.2, 0.25]}
+          waveColor={[0.2, 0.2, 0.2]}
           disableAnimation={false}
           enableMouseInteraction={true}
           mouseRadius={0.15}
@@ -378,18 +378,18 @@ export default function Portfolio() {
       
       {/* Hero Section */}
       <div className="relative min-h-screen h-screen">
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-[9999]" style={{ transform: "translateX(20vw)"}}>
-            <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+        <div className="absolute inset-y--10 right-1 w-[100vw] h-full pointer-events-none z-[100] overflow-visible ">
+            <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
         </div>
         {/* Replace the header div (the one with ref={headerRef}) with this updated version: */}
         <div
           ref={headerRef}
           className={`transition-all duration-700 ease-in-out ${
             scrolled && !isShortWindow
-              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-50"
+              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200]"
               : scrolled && isShortWindow
-                ? "relative w-full pt-6 md:pt-10 px-6 md:px-8 md:pl-8 lg:pl-32 z-50 mb-20"
-                : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-50"
+                ? "relative w-full pt-6 md:pt-10 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] mb-20"
+                : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200]"
           }`}
         >
           {scrolled ? (
@@ -429,8 +429,7 @@ export default function Portfolio() {
                   transition={{ delay: 0.3 }}
                   className="mt-3 max-w-xs md:max-w-sm text-sm text-gray-300"
                 >
-                  I'm a passionate developer with expertise in building modern web applications. I love creating
-                  intuitive and engaging user experiences that solve real-world problems.
+                  I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
                 </motion.p>
               )}
             </div>
@@ -468,8 +467,7 @@ export default function Portfolio() {
                 exit={{ opacity: 0 }}
                 className="mt-4 max-w-xs md:max-w-sm text-sm md:text-base text-gray-300"
               >
-                I'm a passionate developer with expertise in building modern web applications. I love creating intuitive
-                and engaging user experiences that solve real-world problems.
+                I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
               </motion.p>
               {/* Social Media Icons and Resume Button - Initially under About Me */}
               <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="mt-6">
@@ -489,7 +487,7 @@ export default function Portfolio() {
               pointerEvents: scrolled && !isShortWindow ? "auto" : "none",
             }}
             transition={{ duration: 0.5 }}
-            className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-50 hidden md:block"
+            className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-[200] hidden md:block"
           >
             <nav className="space-y-6">
               <NavItem
@@ -536,7 +534,7 @@ export default function Portfolio() {
       </div>
 
       {/* Section 1 - About Me */}
-      <section ref={section1Ref} id="section1" className="min-h-screen relative z-50">
+      <section ref={section1Ref} id="section1" className="min-h-screen relative z-[150]">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -565,7 +563,7 @@ export default function Portfolio() {
       </section>
 
       {/* Section 2 - Experiences */}
-      <section ref={section2Ref} id="section2" className="min-h-screen relative z-50">
+      <section ref={section2Ref} id="section2" className="min-h-screen relative z-[150]">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -602,7 +600,7 @@ export default function Portfolio() {
       </section>
 
       {/* Section 3 - Education */}
-      <section ref={section3Ref} id="section3" className="min-h-screen relative z-50">
+      <section ref={section3Ref} id="section3" className="min-h-screen relative z-[150]">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -631,7 +629,7 @@ export default function Portfolio() {
       </section>
 
       {/* Section 4 - Projects */}
-      <section ref={section4Ref} id="section4" className="min-h-screen relative z-50">
+      <section ref={section4Ref} id="section4" className="min-h-screen relative z-[150]">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}

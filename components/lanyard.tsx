@@ -33,13 +33,13 @@ interface LanyardProps {
 }
 
 export default function Lanyard({
-  position = [0, 0, 30],
+  position = [0, 0, 20],
   gravity = [0, -40, 0],
   fov = 20,
   transparent = true,
 }: LanyardProps) {
   return (
-    <div className="relative z-50 w-full h-screen flex justify-center items-center transform scale-100 origin-center">
+    <div className="relative z-50 min-w-[140vw] h-screen flex justify-center items-center transform scale-100 origin-center">
       <Canvas
         camera={{ position, fov }}
         gl={{ alpha: transparent }}
@@ -266,10 +266,10 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
               <meshPhysicalMaterial
                 map={materials.base.map}
                 map-anisotropy={16}
-                clearcoat={1}
-                clearcoatRoughness={0.15}
-                roughness={0.9}
-                metalness={0.8}
+                clearcoat={0.8}
+                clearcoatRoughness={1}
+                roughness={1}
+                metalness={1}
               />
             </mesh>
             <mesh
@@ -290,7 +290,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
           useMap
           map={texture}
           repeat={[-4, 1]}
-          lineWidth={1}
+          lineWidth={0.5}
         />
       </mesh>
     </>
