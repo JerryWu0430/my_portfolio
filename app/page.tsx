@@ -607,8 +607,8 @@ export default function Portfolio() {
               size={60}
             />
             <div className="flex gap-4">
-              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
-                <img src="/goodnotes.png" alt="GoodNotes" className="object-cover w-full h-full"/>
+              <div className="w-[200px] h-[150px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img src="/goodnotes.png" alt="GoodNotes" className="object-contain w-full h-full p-2" />
               </div>
               <div className="flex flex-col">
                 <h3 className="text-lg font-semibold">Software Engineer Intern at GoodNotes</h3>
@@ -648,13 +648,15 @@ export default function Portfolio() {
               size={60}
             />
             <div className="flex gap-4">
-              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
-                <img src="/ucl.png" alt="ucl" className="object-cover w-full h-full"/>
+              <div className="w-[200px] h-[150px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img src="/ucl.png" alt="ucl" className="object-contain w-full h-full p-2" />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">University College London</h3>
-                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Sep 2023 - Jun 2026</p>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+              <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">University College London</h3>
+                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2023 - Jun 2026</p>
+                </div>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -675,13 +677,17 @@ export default function Portfolio() {
               size={60}
             />
             <div className="flex gap-4">
-              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
-                <img src="/asm.png" alt="ASM" className="object-cover w-full h-full"/>
+              <div className="w-[200px] h-[150px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img src="/asm.jpg" alt="ASM" className="object-contain w-full h-full p-2" />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">American School of Milan</h3>
-                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Aug 2019 - May 2023</p>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">American School of Milan</h3>
+                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Aug 2019 - May 2023</p>
+                </div>
+
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -706,6 +712,8 @@ export default function Portfolio() {
           className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
           <h2 className="text-[28px] font-semibold mb-5">Projects</h2>
+
+          {/* ReadingStar */}
           <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
@@ -715,17 +723,23 @@ export default function Portfolio() {
               size={60}
             />
             <div className="flex gap-4">
-              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
-                <img src="/meta.png" alt="Meta" className="object-cover w-full h-full"/>
+              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img 
+                  src="/readingstar.png" 
+                  alt="ReadingStar" 
+                  className="object-cover w-full h-full"
+                />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">Software Engineering Intern at Meta</h3>
-                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Summer 2024</p>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
-                  Worked on the Instagram Stories team, implementing new features and improving performance.
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">ReadingStar</h3>
+                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2024 - Mar 2025</p>
+                </div>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                  Collaborated with Intel and National Autistic Society to develop a karaoke application gamifying speech therapy to help neurodivergent children improve speech fluency. Developed a full-stack Windows application using OpenVino speech matching with React Native.
                 </p>
                 <div className="flex flex-wrap gap-1.5">
-                  {["React", "Python", "Django", "AWS"].map((tech) => (
+                  {["Python", "OpenVino", "React Native", "JavaScript", "TypeScript"].map((tech) => (
                     <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
                   ))}
                 </div>
@@ -733,6 +747,7 @@ export default function Portfolio() {
             </div>
           </div>
 
+          {/* EarnIt */}
           <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
@@ -742,24 +757,98 @@ export default function Portfolio() {
               size={60}
             />
             <div className="flex gap-4">
-              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
-                <img src="/meta.png" alt="Meta" className="object-cover w-full h-full"/>
+              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img 
+                  src="/earnit.png" 
+                  alt="EarnIt" 
+                  className="object-cover w-full h-full"
+                />
               </div>
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">Software Engineering Intern at Meta</h3>
-                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Summer 2024</p>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
-                  Worked on the Instagram Stories team, implementing new features and improving performance.
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">EarnIt</h3>
+                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Feb 2025</p>
+                </div>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                  Developed an iOS rewards-based productivity application that allows users to earn screen time through completion of quizzes, specifically targeting highschoolers undergoing GCSE or A-Level to further promote gamified revision.
                 </p>
                 <div className="flex flex-wrap gap-1.5">
-                  {["React", "Python", "Django", "AWS"].map((tech) => (
+                  {["Swift", "Firebase", "PostgreSQL", "CSS", "Figma"].map((tech) => (
                     <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
                   ))}
                 </div>
               </div>
             </div>
           </div>
-          
+
+          {/* Yusuf AI */}
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+            <BorderTrail
+              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
+              style={{
+                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
+              }}
+              size={60}
+            />
+            <div className="flex gap-4">
+              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img 
+                  src="/yusuf.png" 
+                  alt="Yusuf AI" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="flex flex-col">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">Yusuf AI</h3>
+                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Dec 2024</p>
+                </div>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                  Developed a web application designed to analyze CVs and provide professional summaries, job recommendations, and other related functionalities. Leveraged Groq's vision model and Coresignal's API.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Python", "Flask", "Groq", "Coresignal API", "HTML", "CSS", "JavaScript"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* OpenAnnot */}
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+            <BorderTrail
+              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
+              style={{
+                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
+              }}
+              size={60}
+            />
+            <div className="flex gap-4">
+              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img 
+                  src="/openannot.png" 
+                  alt="OpenAnnot" 
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="flex flex-col">
+                <div className="flex justify-between items-center">
+                  <h3 className="text-lg font-semibold">OpenAnnot</h3>
+                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Oct 2024</p>
+                </div>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                  Developed a decentralized data annotation platform using Rust and Stellar blockchain hosted with Next.js. Implemented smart contracts for transparent, scalable data labelling and integrated Stellar for global payments.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Rust", "Stellar", "Next.js"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
         </motion.div>
       </section>
     </main>
