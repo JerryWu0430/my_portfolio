@@ -405,7 +405,7 @@ export default function Portfolio() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2 }}
-                className="text-3xl md:text-4xl font-bold"
+                className="text-[48px] font-bold"
               >
                 Jerry Wu
               </motion.h1>
@@ -414,7 +414,7 @@ export default function Portfolio() {
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 1.2 }}
-                className="text-lg md:text-xl text-gray-300 mt-1"
+                className="text-[20px] md:text-xl text-gray-300 mt-1"
               >
                 Software Engineer
               </motion.h2>
@@ -434,9 +434,9 @@ export default function Portfolio() {
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 1.2 }}
-                  className="mt-3 max-w-xs md:max-w-sm text-sm text-gray-300"
+                  className="mt-3 max-w-[200px] md:max-w-[300px] text-[15px] text-gray-300"
                 >
-                  I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
+                  I'm a software engineer with expertise in building user-focused applications. I also have a passion in the application of AI that solve real-world problems.
                 </motion.p>
               )}
             </div>
