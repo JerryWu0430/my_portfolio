@@ -8,8 +8,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { RainbowButton } from "@/components/ui/rainbow-button"
 import { useMobile } from "@/hooks/use-mobile"
 import { useWindowSize } from "@/hooks/use-window-size"
-import Dither from "@/components/Dither"
-import Lanyard from "@/components/lanyard"
+import Dither from "@/components/ui/Dither"
+import Lanyard from "@/components/ui/lanyard"
 import { Canvas } from "@react-three/fiber"
 import * as THREE from "three"
 
@@ -562,35 +562,13 @@ export default function Portfolio() {
             hover:!opacity-100
             hover:!text-white
           ">
-            <h3 className="text-xl font-semibold mb-2">Who I Am</h3>
             <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
               I'm a passionate software engineer with a love for creating elegant solutions to complex problems. With a
               background in computer science and years of industry experience, I specialize in building modern web
               applications that are both functional and beautiful.
             </p>
           </div>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-          ">
-            <h3 className="text-xl font-semibold mb-2">My Approach</h3>
-            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
-              I believe in writing clean, maintainable code and creating intuitive user experiences. My approach
-              combines technical expertise with creative problem-solving to deliver solutions that exceed expectations.
-              I'm constantly learning and exploring new technologies to stay at the forefront of the industry.
-            </p>
-          </div>
+
         </motion.div>
       </section>
 
@@ -603,58 +581,47 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-[28px] font-semibold mb-5">Experiences</h2>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            mb-5
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-          ">
-            <h3 className="text-xl font-semibold mb-2">Senior Developer at TechCorp</h3>
-            <p className="text-sm text-[#cccccc] mb-2 transition-colors duration-300">2020 - Present</p>
-            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
-              Led the development of multiple web applications using React, Next.js, and Node.js. Implemented CI/CD
-              pipelines and mentored junior developers. Reduced application load time by 40% through performance
-              optimizations.
-            </p>
+          <h2 className="text-[28px] font-semibold mb-5">Experience</h2>
+          
+          {/* GoodNotes */}
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white">
+            <div className="flex gap-4">
+              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/goodnotes.png" alt="GoodNotes" className="object-cover w-full h-full"/>
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-lg font-semibold">Software Engineer Intern at GoodNotes</h3>
+                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">2025 - Present</p>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+                  B2B Team - Working on enterprise solutions and integrations.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["React", "TypeScript", "Node.js", "GraphQL"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-          ">
-            <h3 className="text-xl font-semibold mb-2">Skills</h3>
-            <div className="flex flex-wrap gap-2">
-              {["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS", "UI/UX Design", "GraphQL", "AWS"].map(
-                (skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-[rgba(26,26,26,0.85)] rounded-full text-sm text-[#cccccc] hover:bg-[rgba(255,255,255,0.12)] transition-colors duration-300"
-                  >
-                    {skill}
-                  </span>
-                ),
-              )}
+
+          {/* Meta */}
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white">
+            <div className="flex gap-4">
+              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/meta.png" alt="Meta" className="object-cover w-full h-full"/>
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-lg font-semibold">Software Engineering Intern at Meta</h3>
+                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Summer 2024</p>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+                  Worked on the Instagram Stories team, implementing new features and improving performance.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["React", "Python", "Django", "AWS"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -670,51 +637,46 @@ export default function Portfolio() {
           className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
           <h2 className="text-[28px] font-semibold mb-5">Education</h2>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            mb-5
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-          ">
-            <h3 className="text-xl font-semibold mb-2">MSc in Computer Science</h3>
-            <p className="text-sm text-[#cccccc] mb-2 transition-colors duration-300">Imperial College London, 2018-2020</p>
-            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
-              Specialized in artificial intelligence and web technologies. Graduated with distinction. Thesis on
-              "Optimizing React Applications for Performance" received departmental recognition.
-            </p>
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white">
+            <div className="flex gap-4">
+              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/meta.png" alt="Meta" className="object-cover w-full h-full"/>
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-lg font-semibold">Software Engineering Intern at Meta</h3>
+                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Summer 2024</p>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+                  Worked on the Instagram Stories team, implementing new features and improving performance.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["React", "Python", "Django", "AWS"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-          ">
-            <h3 className="text-xl font-semibold mb-2">Certifications & Achievements</h3>
-            <ul className="list-disc list-inside text-base text-[#cccccc] transition-colors duration-300 space-y-2">
-              <li>AWS Certified Solutions Architect - 2021</li>
-              <li>Google Cloud Professional Developer - 2022</li>
-              <li>Speaker at React Conference London - 2023</li>
-            </ul>
+
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white">
+            <div className="flex gap-4">
+              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/meta.png" alt="Meta" className="object-cover w-full h-full"/>
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-lg font-semibold">Software Engineering Intern at Meta</h3>
+                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Summer 2024</p>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+                  Worked on the Instagram Stories team, implementing new features and improving performance.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["React", "Python", "Django", "AWS"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
+          
         </motion.div>
       </section>
 
@@ -728,58 +690,46 @@ export default function Portfolio() {
           className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
           <h2 className="text-[28px] font-semibold mb-5">Projects</h2>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            mb-5
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-          ">
-            <h3 className="text-xl font-semibold mb-2">E-commerce Platform</h3>
-            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
-              Built a full-stack e-commerce platform using Next.js, TypeScript, and Stripe. Implemented features like
-              user authentication, product search, cart management, and secure checkout. Deployed on Vercel with
-              serverless functions.
-            </p>
-          </div>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-          ">
-            <h3 className="text-xl font-semibold mb-2">Contact Me</h3>
-            <p className="text-base leading-relaxed text-[#cccccc] mb-4 transition-colors duration-300">
-              Interested in working together? Feel free to reach out through any of the social media channels or
-              directly via email.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="px-4 py-2 bg-white text-black rounded text-sm hover:bg-gray-200 transition-colors duration-300">
-                Download Resume
-              </button>
-              <button className="px-4 py-2 border border-white rounded text-sm hover:bg-[rgba(255,255,255,0.12)] transition-colors duration-300">
-                Send Message
-              </button>
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white">
+            <div className="flex gap-4">
+              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/meta.png" alt="Meta" className="object-cover w-full h-full"/>
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-lg font-semibold">Software Engineering Intern at Meta</h3>
+                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Summer 2024</p>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+                  Worked on the Instagram Stories team, implementing new features and improving performance.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["React", "Python", "Django", "AWS"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
+
+          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white">
+            <div className="flex gap-4">
+              <div className="w-[200px] h-[120px] relative rounded-lg overflow-hidden flex-shrink-0">
+                <img src="/meta.png" alt="Meta" className="object-cover w-full h-full"/>
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-lg font-semibold">Software Engineering Intern at Meta</h3>
+                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">Summer 2024</p>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
+                  Worked on the Instagram Stories team, implementing new features and improving performance.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["React", "Python", "Django", "AWS"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </motion.div>
       </section>
     </main>
