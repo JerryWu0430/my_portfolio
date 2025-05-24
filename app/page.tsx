@@ -377,7 +377,7 @@ export default function Portfolio() {
       {isMobile && <MobileNav />}
       
       {/* Hero Section */}
-      <div className="relative min-h-screen h-screen">
+      <div className="relative min-h-[120vh] h-[120vh]">
         <div className="absolute inset-y--10 right-1 w-[100vw] h-full pointer-events-none z-[100] overflow-visible ">
             <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
         </div>
@@ -398,6 +398,7 @@ export default function Portfolio() {
                 key="scrolled-title"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2 }}
                 className="text-3xl md:text-4xl font-bold"
               >
                 Jerry Wu
@@ -406,7 +407,7 @@ export default function Portfolio() {
                 key="scrolled-subtitle"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.2, duration: 1.2 }}
                 className="text-lg md:text-xl text-gray-300 mt-1"
               >
                 Software Engineer
@@ -415,7 +416,7 @@ export default function Portfolio() {
                 key="scrolled-location"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+                transition={{ delay: 0.4, duration: 1.2 }}
                 className="flex items-center mt-2 text-gray-400"
               >
                 <MapPin className="h-4 w-4 mr-1" />
@@ -426,7 +427,7 @@ export default function Portfolio() {
                   key="scrolled-description"
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 0.6, duration: 1.2 }}
                   className="mt-3 max-w-xs md:max-w-sm text-sm text-gray-300"
                 >
                   I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
@@ -441,6 +442,7 @@ export default function Portfolio() {
                 animate={isTransitioning ? "pixelate" : "initial"}
                 exit="exit"
                 variants={textVariants}
+                transition={{ duration: 1.2 }}
                 className="text-4xl md:text-5xl font-bold"
               >
                 Hi, I'm Jerry Wu{" "}
@@ -465,12 +467,13 @@ export default function Portfolio() {
                 key="initial-description"
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                transition={{ duration: 1.2 }}
                 className="mt-4 max-w-xs md:max-w-sm text-sm md:text-base text-gray-300"
               >
                 I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
               </motion.p>
               {/* Social Media Icons and Resume Button - Initially under About Me */}
-              <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} className="mt-6">
+              <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6">
                 <SocialAndResume />
               </motion.div>
             </AnimatePresence>
@@ -534,26 +537,55 @@ export default function Portfolio() {
       </div>
 
       {/* Section 1 - About Me */}
-      <section ref={section1Ref} id="section1" className="min-h-screen relative z-[150]">
+      <section ref={section1Ref} id="section1" className="relative z-[150] py-20">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="absolute right-0 top-0 w-full md:w-[70%] lg:w-[60%] h-full flex flex-col justify-center px-6 md:px-12"
+          className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 mt-20 md:mt-0">About Me</h2>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg mb-4 md:mb-6 hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Who I Am</h3>
-            <p className="text-sm md:text-base text-gray-300">
+          <h2 className="text-[28px] font-semibold mb-5">About Me</h2>
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            mb-5
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">Who I Am</h3>
+            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
               I'm a passionate software engineer with a love for creating elegant solutions to complex problems. With a
               background in computer science and years of industry experience, I specialize in building modern web
               applications that are both functional and beautiful.
             </p>
           </div>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">My Approach</h3>
-            <p className="text-sm md:text-base text-gray-300">
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">My Approach</h3>
+            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
               I believe in writing clean, maintainable code and creating intuitive user experiences. My approach
               combines technical expertise with creative problem-solving to deliver solutions that exceed expectations.
               I'm constantly learning and exploring new technologies to stay at the forefront of the industry.
@@ -563,32 +595,61 @@ export default function Portfolio() {
       </section>
 
       {/* Section 2 - Experiences */}
-      <section ref={section2Ref} id="section2" className="min-h-screen relative z-[150]">
+      <section ref={section2Ref} id="section2" className="relative z-[150] py-20">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="absolute right-0 top-0 w-full md:w-[70%] lg:w-[60%] h-full flex flex-col justify-center px-6 md:px-12"
+          className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 mt-20 md:mt-0">Experiences</h2>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg mb-4 md:mb-6 hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Senior Developer at TechCorp</h3>
-            <p className="text-xs md:text-sm text-gray-400 mb-2">2020 - Present</p>
-            <p className="text-sm md:text-base text-gray-300">
+          <h2 className="text-[28px] font-semibold mb-5">Experiences</h2>
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            mb-5
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">Senior Developer at TechCorp</h3>
+            <p className="text-sm text-[#cccccc] mb-2 transition-colors duration-300">2020 - Present</p>
+            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
               Led the development of multiple web applications using React, Next.js, and Node.js. Implemented CI/CD
               pipelines and mentored junior developers. Reduced application load time by 40% through performance
               optimizations.
             </p>
           </div>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Skills</h3>
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">Skills</h3>
             <div className="flex flex-wrap gap-2">
               {["React", "Next.js", "TypeScript", "Node.js", "Tailwind CSS", "UI/UX Design", "GraphQL", "AWS"].map(
                 (skill) => (
                   <span
                     key={skill}
-                    className="px-2 md:px-3 py-1 bg-gray-800/70 rounded-full text-xs md:text-sm hover:bg-gray-800 transition-colors duration-300"
+                    className="px-3 py-1 bg-[rgba(26,26,26,0.85)] rounded-full text-sm text-[#cccccc] hover:bg-[rgba(255,255,255,0.12)] transition-colors duration-300"
                   >
                     {skill}
                   </span>
@@ -600,26 +661,55 @@ export default function Portfolio() {
       </section>
 
       {/* Section 3 - Education */}
-      <section ref={section3Ref} id="section3" className="min-h-screen relative z-[150]">
+      <section ref={section3Ref} id="section3" className="relative z-[150] py-20">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="absolute right-0 top-0 w-full md:w-[70%] lg:w-[60%] h-full flex flex-col justify-center px-6 md:px-12"
+          className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 mt-20 md:mt-0">Education</h2>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg mb-4 md:mb-6 hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">MSc in Computer Science</h3>
-            <p className="text-xs md:text-sm text-gray-400 mb-2">Imperial College London, 2018-2020</p>
-            <p className="text-sm md:text-base text-gray-300">
+          <h2 className="text-[28px] font-semibold mb-5">Education</h2>
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            mb-5
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">MSc in Computer Science</h3>
+            <p className="text-sm text-[#cccccc] mb-2 transition-colors duration-300">Imperial College London, 2018-2020</p>
+            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
               Specialized in artificial intelligence and web technologies. Graduated with distinction. Thesis on
               "Optimizing React Applications for Performance" received departmental recognition.
             </p>
           </div>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Certifications & Achievements</h3>
-            <ul className="list-disc list-inside text-sm md:text-base text-gray-300 space-y-1 md:space-y-2">
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">Certifications & Achievements</h3>
+            <ul className="list-disc list-inside text-base text-[#cccccc] transition-colors duration-300 space-y-2">
               <li>AWS Certified Solutions Architect - 2021</li>
               <li>Google Cloud Professional Developer - 2022</li>
               <li>Speaker at React Conference London - 2023</li>
@@ -629,26 +719,55 @@ export default function Portfolio() {
       </section>
 
       {/* Section 4 - Projects */}
-      <section ref={section4Ref} id="section4" className="min-h-screen relative z-[150]">
+      <section ref={section4Ref} id="section4" className="relative z-[150] py-20">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="absolute right-0 top-0 w-full md:w-[70%] lg:w-[60%] h-full flex flex-col justify-center px-6 md:px-12"
+          className="w-full md:w-[70%] lg:w-[60%] ml-auto flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 mt-20 md:mt-0">Projects</h2>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg mb-4 md:mb-6 hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">E-commerce Platform</h3>
-            <p className="text-sm md:text-base text-gray-300">
+          <h2 className="text-[28px] font-semibold mb-5">Projects</h2>
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            mb-5
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">E-commerce Platform</h3>
+            <p className="text-base leading-relaxed text-[#cccccc] transition-colors duration-300">
               Built a full-stack e-commerce platform using Next.js, TypeScript, and Stripe. Implemented features like
               user authentication, product search, cart management, and secure checkout. Deployed on Vercel with
               serverless functions.
             </p>
           </div>
-          <div className="bg-gray-900/50 p-4 md:p-6 rounded-lg hover:bg-gray-900/70 transition-colors duration-300">
-            <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3">Contact Me</h3>
-            <p className="text-sm md:text-base text-gray-300 mb-4">
+          <div className="
+            backdrop-blur-[0.5px]
+            border border-transparent
+            rounded-2xl
+            p-6
+            transition-all duration-300
+            hover:border-white/20
+            hover:backdrop-blur-md
+            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
+            hover:-translate-y-1
+            group-hover/section:text-white/50
+            group-hover/section:opacity-50
+            hover:!opacity-100
+            hover:!text-white
+          ">
+            <h3 className="text-xl font-semibold mb-2">Contact Me</h3>
+            <p className="text-base leading-relaxed text-[#cccccc] mb-4 transition-colors duration-300">
               Interested in working together? Feel free to reach out through any of the social media channels or
               directly via email.
             </p>
@@ -656,7 +775,7 @@ export default function Portfolio() {
               <button className="px-4 py-2 bg-white text-black rounded text-sm hover:bg-gray-200 transition-colors duration-300">
                 Download Resume
               </button>
-              <button className="px-4 py-2 border border-white rounded text-sm hover:bg-gray-800 transition-colors duration-300">
+              <button className="px-4 py-2 border border-white rounded text-sm hover:bg-[rgba(255,255,255,0.12)] transition-colors duration-300">
                 Send Message
               </button>
             </div>
