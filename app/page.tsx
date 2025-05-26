@@ -552,37 +552,11 @@ export default function Portfolio() {
           className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
         >
           <h2 className="text-[28px] font-semibold mb-5">About Me</h2>
-          <div className="
-            backdrop-blur-[0.5px]
-            border border-transparent
-            rounded-2xl
-            p-6
-            mb-5
-            transition-all duration-300
-            hover:border-white/20
-            hover:backdrop-blur-md
-            hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)]
-            hover:-translate-y-1
-            group-hover/section:text-white/50
-            group-hover/section:opacity-50
-            hover:!opacity-100
-            hover:!text-white
-            relative
-            group/card
-          ">
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300">
-              <p style={{ marginBottom: '1em' }}>I'm a software engineer passionate about building intuitive, full-stack applications that bring together clean design, rich interactivity, and smart systems. My favorite work blends UI/UX precision with the possibilities of AI — from thoughtful animations to integrating large language models that enhance user experience.</p>
-              <p style={{ marginBottom: '1em' }}>Currently, I'm a Software Engineering Intern at Goodnotes (starting soon!), where I'll be joining the B2B team. I'm also a second-year Computer Science student at UCL, where I've been actively involved in both technical and leadership roles — serving as the Technical Director at the UCL Legal Tech Society, Data Lead at the UCL Data Visualisation Society, and Vice President of Growth at the UCL FinTech Society.</p>
-              <p style={{ marginBottom: '1em' }}>My technical interests span full-stack development, machine learning, and AI integration. I work primarily with Python, TypeScript, React, and PostgreSQL. I'm particularly excited about opportunities at the intersection of ML/AI and product — and am currently open to research or applied work involving LLMs or intelligent systems.</p>
-              <p>Outside of tech, you'll probably find me on a volleyball court or cooking something new in the kitchen.</p>
-            </p>
+          <div>
+            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>I'm a software engineer passionate about building intuitive, full-stack applications that bring together clean design, rich interactivity, and smart systems. My favorite work blends UI/UX precision with the possibilities of AI — from thoughtful animations to integrating large language models that enhance user experience.</p>
+            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>Currently, I'm a Software Engineering Intern at Goodnotes (starting soon!), where I'll be joining the B2B team. I'm also a second-year Computer Science student at UCL, where I've been actively involved in both technical and leadership roles — serving as the Technical Director at the UCL Legal Tech Society, Data Lead at the UCL Data Visualisation Society, and Vice President of Growth at the UCL FinTech Society.</p>
+            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>My technical interests span full-stack development, machine learning, and AI integration. I work primarily with Python, TypeScript, React, and PostgreSQL. I'm particularly excited about opportunities at the intersection of ML/AI and product — and am currently open to research or applied work involving LLMs or intelligent systems.</p>
+            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300">Outside of tech, you'll probably find me on a volleyball court or cooking something new in the kitchen.</p>
           </div>
         </motion.div>
       </section>
