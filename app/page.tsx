@@ -581,21 +581,26 @@ export default function Portfolio() {
               }}
               size={60}
             />
-            <div className="flex gap-4">
-              <div className="w-[200px] h-[150px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
-                <img src="/goodnotes.png" alt="GoodNotes" className="object-contain w-full h-full p-2" />
+            <div className="flex flex-row gap-8 items-start">
+              {/* Date on the left */}
+              <div className="min-w-[115px] flex flex-col items-start pt-1">
+                <span className="text-[12px] font-semibold text-gray-400 tracking-widest">2025 — PRESENT</span>
               </div>
-              <div className="flex flex-col">
-                <h3 className="text-lg font-semibold">Software Engineer Intern at GoodNotes</h3>
-                <p className="text-xs text-[#cccccc] mt-1 mb-2 transition-colors duration-300">2025 - Present</p>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 transition-colors duration-300">
-                  B2B Team - Working on enterprise solutions and integrations.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["React", "TypeScript", "Node.js", "GraphQL"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
+              {/* Main content on the right */}
+              <div className="flex-1 flex flex-col">
+                <div className="flex flex-row items-center gap-2">
+                  <h3 className="text-lg font-semibold">Software Engineer Intern @ GoodNotes</h3>
+                  {/* Optionally add a link or icon here */}
                 </div>
+                {/*<p className="text-[14px] leading-relaxed text-[#cccccc] mb-3 mt-1 transition-colors duration-300">
+                  B2B Team - Working on enterprise solutions and integrations.
+                </p>*/}
+                {/* Tech stack (optional, add if you want) */}
+                {/* <div className="flex flex-wrap gap-2 mt-2">
+                  {["React", "TypeScript", "Node.js", "GraphQL"].map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#7de2d1] font-medium transition-colors duration-300">{tech}</span>
+                  ))}
+                </div> */}
               </div>
             </div>
           </div>
@@ -634,11 +639,7 @@ export default function Portfolio() {
                 <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["1", "2", "3", "4"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
-                </div>
+
               </div>
             </div>
           </div>
@@ -665,11 +666,7 @@ export default function Portfolio() {
                 <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["1", "2", "3", "4"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
-                </div>
+
               </div>
             </div>
           </div>
