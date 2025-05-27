@@ -651,9 +651,12 @@ export default function Portfolio() {
                   <h3 className="text-lg font-semibold">University College London</h3>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2023 - Jun 2026</p>
                 </div>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
+                  <i>Bachelor of Science in Computer Science</i>
                 </p>
+                <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
+                  <p><b>Activities & Societies</b>: Vice President @ UCL FinTech Society, Data Lead @ UCL DataViz Society, Technical Director @ UCL Legal Tech Society, Volleyball Mixed Team @ LUSL UCL Mixed Team</p>
+                </div>
 
               </div>
             </div>
@@ -682,9 +685,14 @@ export default function Portfolio() {
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Aug 2019 - May 2023</p>
                 </div>
 
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
+                  <i>International Baccalaureate Diploma</i>
                 </p>
+
+                <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
+                  <p><b>Activities & Societies:</b> Tech Team Leader, Varsity Volleyball, Varsity Basketball, National Honor Society Member</p>
+                  <p><b>Awards:</b> Honor Roll, Computer Science Award</p>
+                </div>
 
               </div>
             </div>
