@@ -627,9 +627,9 @@ export default function Portfolio() {
               }}
               size={60}
             />
-            <div className="flex gap-4">
-              <div className="w-[200px] h-[150px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
-                <img src="/ucl.png" alt="ucl" className="object-contain w-full h-full p-2" />
+            <div className="flex gap-4 items-center">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img src="/ucl.png" alt="ucl"  />
               </div>
               <div className="flex flex-col">
               <div className="flex justify-between items-center">
@@ -652,9 +652,9 @@ export default function Portfolio() {
               }}
               size={60}
             />
-            <div className="flex gap-4">
-              <div className="w-[200px] h-[150px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
-                <img src="/asm.jpg" alt="ASM" className="object-contain w-full h-full p-2" />
+            <div className="flex gap-4 items-center">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img src="/asm.png" alt="ASM"  />
               </div>
               <div className="flex flex-col">
 
@@ -694,12 +694,11 @@ export default function Portfolio() {
               }}
               size={60}
             />
-            <div className="flex gap-4">
-              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
                 <img 
                   src="/readingstar.png" 
                   alt="ReadingStar" 
-                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="flex flex-col">
@@ -728,12 +727,11 @@ export default function Portfolio() {
               }}
               size={60}
             />
-            <div className="flex gap-4">
-              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
                 <img 
                   src="/earnit.png" 
                   alt="EarnIt" 
-                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="flex flex-col">
@@ -762,12 +760,11 @@ export default function Portfolio() {
               }}
               size={60}
             />
-            <div className="flex gap-4">
-              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
                 <img 
                   src="/yusuf.png" 
                   alt="Yusuf AI" 
-                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="flex flex-col">
@@ -796,12 +793,11 @@ export default function Portfolio() {
               }}
               size={60}
             />
-            <div className="flex gap-4">
-              <div className="w-[240px] h-[135px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
                 <img 
                   src="/openannot.png" 
                   alt="OpenAnnot" 
-                  className="object-cover w-full h-full"
                 />
               </div>
               <div className="flex flex-col">
