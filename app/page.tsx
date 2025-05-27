@@ -399,10 +399,10 @@ export default function Portfolio() {
           ref={headerRef}
           className={`transition-all duration-700 ease-in-out ${
             scrolled && !isShortWindow
-              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200]"
+              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none"
               : scrolled && isShortWindow
                 ? "relative w-full pt-6 md:pt-10 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] mb-20"
-                : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200]"
+                : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none"
           }`}
         >
           {scrolled ? (
