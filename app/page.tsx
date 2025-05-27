@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useEffect, useRef, useState } from "react"
-import { Github, Instagram, Linkedin, Mail, MapPin, Menu, X } from "lucide-react"
+import { Github, Instagram, Linkedin, Mail, MapPin, Menu, X, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { RainbowButton } from "@/components/ui/rainbow-button"
@@ -363,6 +363,8 @@ export default function Portfolio() {
     )
   }
 
+  const [hovered, setHovered] = useState(false);
+
   return (
     <main className="min-h-screen text-white overflow-x-hidden relative">
       {/* Background */}
@@ -573,7 +575,11 @@ export default function Portfolio() {
           <h2 className="text-[28px] font-semibold mb-5">Experience</h2>
           
           {/* GoodNotes */}
-          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
               style={{
@@ -603,7 +609,7 @@ export default function Portfolio() {
                 </div> */}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           
         </motion.div>
@@ -619,7 +625,11 @@ export default function Portfolio() {
           className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
         >
           <h2 className="text-[28px] font-semibold mb-5">Education</h2>
-          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
               style={{
@@ -642,9 +652,13 @@ export default function Portfolio() {
 
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
               style={{
@@ -669,7 +683,7 @@ export default function Portfolio() {
 
               </div>
             </div>
-          </div>
+          </motion.div>
           
         </motion.div>
       </section>
@@ -685,8 +699,56 @@ export default function Portfolio() {
         >
           <h2 className="text-[28px] font-semibold mb-5">Projects</h2>
 
+          {/* Personal Portfolio */}
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
+            <BorderTrail
+              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
+              style={{
+                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
+              }}
+              size={60}
+            />
+            <div className="flex gap-4 items-center">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+                <img src="/portfolio.png" alt="Personal Portfolio" className="object-contain w-full h-full" />
+              </div>
+              <div className="flex flex-col">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg font-semibold">Portfolio Website</h3>
+                    <a href="https://github.com/JerryWu0430/my_portfolio" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                      <motion.div
+                        animate={{ rotate: hovered ? 0 : 45 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.div>
+                    </a>
+                  </div>
+                  <p className="text-xs text-[#cccccc] transition-colors duration-300">May 2025</p>
+                </div>
+                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                  Designed, built, and maintained this portfolio to showcase my projects, experience, and skills. Focused on modern UI/UX, smooth animations, and responsive design using the latest web technologies.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Next.js", "React", "TypeScript", "Tailwind CSS"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* ReadingStar */}
-          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
               style={{
@@ -703,7 +765,17 @@ export default function Portfolio() {
               </div>
               <div className="flex flex-col">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">ReadingStar</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg font-semibold">ReadingStar</h3>
+                    <a href="https://github.com/JerryWu0430/readingstar" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                      <motion.div
+                        animate={{ rotate: hovered ? 0 : 45 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.div>
+                    </a>
+                  </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2024 - Mar 2025</p>
                 </div>
                 <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
@@ -716,10 +788,14 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* EarnIt */}
-          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
               style={{
@@ -736,7 +812,17 @@ export default function Portfolio() {
               </div>
               <div className="flex flex-col">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">EarnIt</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg font-semibold">EarnIt</h3>
+                    <a href="https://github.com/JerryWu0430/EarnIt" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                      <motion.div
+                        animate={{ rotate: hovered ? 0 : 45 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.div>
+                    </a>
+                  </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Feb 2025</p>
                 </div>
                 <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
@@ -749,10 +835,14 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Yusuf AI */}
-          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
               style={{
@@ -769,7 +859,17 @@ export default function Portfolio() {
               </div>
               <div className="flex flex-col">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">Yusuf AI</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg font-semibold">Yusuf AI</h3>
+                    <a href="https://github.com/JerryWu0430/Yusuf" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                      <motion.div
+                        animate={{ rotate: hovered ? 0 : 45 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.div>
+                    </a>
+                  </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Dec 2024</p>
                 </div>
                 <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
@@ -782,10 +882,14 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* OpenAnnot */}
-          <div className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card">
+          <motion.div
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+          >
             <BorderTrail
               className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
               style={{
@@ -802,7 +906,17 @@ export default function Portfolio() {
               </div>
               <div className="flex flex-col">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold">OpenAnnot</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg font-semibold">OpenAnnot</h3>
+                    <a href="https://github.com/JerryWu0430/OpenAnnot" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                      <motion.div
+                        animate={{ rotate: hovered ? 0 : 45 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.div>
+                    </a>
+                  </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Oct 2024</p>
                 </div>
                 <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
@@ -815,7 +929,7 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </motion.div>
       </section>
