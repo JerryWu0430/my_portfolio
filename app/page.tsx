@@ -67,47 +67,10 @@ export default function Portfolio() {
   }, [activeSection, prevActiveSection])
 
   useEffect(() => {
-    // Improved observer options with larger threshold and rootMargin
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -20% 0px", // Reduce sensitivity at top and bottom
-      threshold: 0.5, // Require more of the section to be visible
-    }
-
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      // Skip updates during programmatic scrolling
-      if (isProgrammaticScroll) return
-
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id
-
-          // Only update if it's a different section
-          if (id !== activeSection) {
-            setActiveSection(id)
-          }
-        }
-      })
-    }
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions)
-
-    const sections = [section1Ref.current, section2Ref.current, section3Ref.current, section4Ref.current]
-
-    sections.forEach((section) => {
-      if (section) observer.observe(section)
-    })
-
-    return () => {
-      sections.forEach((section) => {
-        if (section) observer.unobserve(section)
-      })
-    }
-  }, [section1Ref, section2Ref, section3Ref, section4Ref, activeSection, isProgrammaticScroll])
-
-  useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
+      const windowHeight = window.innerHeight
+      const documentHeight = document.documentElement.scrollHeight
 
       // Start transition effect before fully scrolled
       if (scrollPosition > 50 && scrollPosition < 150) {
@@ -121,16 +84,58 @@ export default function Portfolio() {
       } else {
         setScrolled(false)
       }
+
+      // --- New: Determine active section by top 10% of viewport ---
+      if (!isProgrammaticScroll) {
+        const sectionRefs = [
+          { id: "section1", ref: section1Ref },
+          { id: "section2", ref: section2Ref },
+          { id: "section3", ref: section3Ref },
+          { id: "section4", ref: section4Ref },
+        ]
+        const topThreshold = windowHeight * 0.1
+        let closestSection = null
+        let closestDistance = Infinity
+        sectionRefs.forEach(({ id, ref }) => {
+          if (ref.current) {
+            const rect = ref.current.getBoundingClientRect()
+            const distance = Math.abs(rect.top - topThreshold)
+            // Only consider sections whose top is above or at the threshold
+            if (rect.top <= topThreshold && distance < closestDistance) {
+              closestSection = id
+              closestDistance = distance
+            }
+          }
+        })
+        // If no section is above threshold, default to first section
+        if (!closestSection) closestSection = "section1"
+        if (activeSection !== closestSection) {
+          setActiveSection(closestSection)
+        }
+
+        // Still keep the bottom-of-page logic for last section
+        const bottomThreshold = 100 // px from bottom
+        if (windowHeight + scrollPosition >= documentHeight - bottomThreshold) {
+          if (activeSection !== "section4") {
+            setActiveSection("section4")
+          }
+        }
+      }
     }
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [activeSection, isProgrammaticScroll])
 
-  const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
+  const scrollToSection = (ref: React.RefObject<HTMLElement | null>, sectionId?: string) => {
     if (ref.current) {
       // Set flag to indicate we're scrolling programmatically
       setIsProgrammaticScroll(true)
+
+      // Instantly update active section for nav highlight
+      if (sectionId) {
+        setActiveSection(sectionId)
+      }
 
       // Close mobile menu if open
       if (mobileMenuOpen) {
@@ -262,7 +267,7 @@ export default function Portfolio() {
   }: {
     sectionRef: React.RefObject<HTMLElement | null>
     label: string
-    scrollToSection: (ref: React.RefObject<HTMLElement | null>) => void
+    scrollToSection: (ref: React.RefObject<HTMLElement | null>, sectionId?: string) => void
     activeSection: string
     sectionId: string
   }) => {
@@ -274,7 +279,7 @@ export default function Portfolio() {
     return (
       <div className="relative py-1.5">
         <button
-          onClick={() => scrollToSection(sectionRef)}
+          onClick={() => scrollToSection(sectionRef, sectionId)}
           className="group flex items-center text-sm font-light"
           onMouseEnter={() => setHoveredSection(sectionId)}
           onMouseLeave={() => setHoveredSection(null)}
