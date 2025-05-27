@@ -178,20 +178,20 @@ export default function Portfolio() {
   const SocialAndResume = ({ className = "" }: { className?: string }) => (
     <div className={`flex flex-wrap items-center gap-y-4 ${className}`}>
       <div className="flex gap-6 mr-8">
-        <Link href="https://www.linkedin.com/in/jerrywu0430" target="_blank" aria-label="LinkedIn">
+        <Link href="https://www.linkedin.com/in/jerrywu0430" target="_blank" aria-label="LinkedIn" className="pointer-events-auto">
           <Linkedin className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
-        <Link href="https://github.com/JerryWu0430" target="_blank" aria-label="GitHub">
+        <Link href="https://github.com/JerryWu0430" target="_blank" aria-label="GitHub" className="pointer-events-auto">
           <Github className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
-        <Link href="mailto:woohaoran@gmail.com" aria-label="Email">
+        <Link href="mailto:woohaoran@gmail.com" aria-label="Email" className="pointer-events-auto">
           <Mail className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
-        <Link href="https://www.instagram.com/jerrywu0430" target="_blank" aria-label="Instagram">
+        <Link href="https://www.instagram.com/jerrywu0430" target="_blank" aria-label="Instagram" className="pointer-events-auto">
           <Instagram className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
       </div>
-      <Link href="/resume.pdf" target="_blank">
+      <Link href="/resume.pdf" target="_blank" className="pointer-events-auto">
         <RainbowButton className="text-sm h-9 px-6">Resume</RainbowButton>
       </Link>
     </div>
@@ -733,7 +733,7 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">Portfolio Website</h3>
-                    <a href="https://github.com/JerryWu0430/my_portfolio" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                    <a href="https://github.com/JerryWu0430/my_portfolio" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
                       <motion.div
                         animate={{ rotate: hovered ? 0 : 45 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -780,7 +780,7 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">ReadingStar</h3>
-                    <a href="https://github.com/JerryWu0430/readingstar" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                    <a href="https://github.com/JerryWu0430/readingstar" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
                       <motion.div
                         animate={{ rotate: hovered ? 0 : 45 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -827,7 +827,7 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">EarnIt</h3>
-                    <a href="https://github.com/JerryWu0430/EarnIt" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                    <a href="https://github.com/JerryWu0430/EarnIt" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
                       <motion.div
                         animate={{ rotate: hovered ? 0 : 45 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -874,7 +874,7 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">Yusuf AI</h3>
-                    <a href="https://github.com/JerryWu0430/Yusuf" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                    <a href="https://github.com/JerryWu0430/Yusuf" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
                       <motion.div
                         animate={{ rotate: hovered ? 0 : 45 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -921,7 +921,7 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">OpenAnnot</h3>
-                    <a href="https://github.com/JerryWu0430/OpenAnnot" target="_blank" rel="noopener noreferrer" className="inline-flex">
+                    <a href="https://github.com/JerryWu0430/OpenAnnot" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
                       <motion.div
                         animate={{ rotate: hovered ? 0 : 45 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
