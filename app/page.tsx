@@ -581,8 +581,7 @@ export default function Portfolio() {
           
           {/* GoodNotes */}
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -631,8 +630,7 @@ export default function Portfolio() {
         >
           <h2 className="text-[28px] font-semibold mb-5">Education</h2>
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -663,8 +661,7 @@ export default function Portfolio() {
           </motion.div>
 
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -714,8 +711,7 @@ export default function Portfolio() {
 
           {/* Personal Portfolio */}
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -733,14 +729,19 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">Portfolio Website</h3>
-                    <a href="https://github.com/JerryWu0430/my_portfolio" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
-                      <motion.div
-                        animate={{ rotate: hovered ? 0 : 45 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      >
-                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                      </motion.div>
-                    </a>
+                    <motion.a
+                      href="https://github.com/JerryWu0430/my_portfolio"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variants={{
+                        initial: { x: -2, y: 2 },
+                        hover: { x: 2, y: -2 }
+                      }}
+                      initial="initial"
+                      className="inline-flex pointer-events-auto"
+                    >
+                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                    </motion.a>
                   </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">May 2025</p>
                 </div>
@@ -758,8 +759,7 @@ export default function Portfolio() {
 
           {/* ReadingStar */}
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -779,15 +779,20 @@ export default function Portfolio() {
               <div className="flex flex-col">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold">ReadingStar</h3>
-                    <a href="https://github.com/JerryWu0430/readingstar" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
-                      <motion.div
-                        animate={{ rotate: hovered ? 0 : 45 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      >
-                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                      </motion.div>
-                    </a>
+                    <h3 className="text-lg font-semibold ">ReadingStar</h3>
+                    <motion.a
+                      href="https://github.com/JerryWu0430/readingstar"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variants={{
+                        initial: { x: -2, y: 2 },
+                        hover: { x: 2, y: -2 }
+                      }}
+                      initial="initial"
+                      className="inline-flex pointer-events-auto"
+                    >
+                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                    </motion.a>
                   </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2024 - Mar 2025</p>
                 </div>
@@ -805,8 +810,7 @@ export default function Portfolio() {
 
           {/* EarnIt */}
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -827,14 +831,19 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">EarnIt</h3>
-                    <a href="https://github.com/JerryWu0430/EarnIt" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
-                      <motion.div
-                        animate={{ rotate: hovered ? 0 : 45 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      >
-                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                      </motion.div>
-                    </a>
+                    <motion.a
+                      href="https://github.com/JerryWu0430/EarnIt"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variants={{
+                        initial: { x: -2, y: 2 },
+                        hover: { x: 2, y: -2 }
+                      }}
+                      initial="initial"
+                      className="inline-flex pointer-events-auto"
+                    >
+                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                    </motion.a>
                   </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Feb 2025</p>
                 </div>
@@ -852,8 +861,7 @@ export default function Portfolio() {
 
           {/* Yusuf AI */}
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -874,14 +882,19 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">Yusuf AI</h3>
-                    <a href="https://github.com/JerryWu0430/Yusuf" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
-                      <motion.div
-                        animate={{ rotate: hovered ? 0 : 45 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      >
-                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                      </motion.div>
-                    </a>
+                    <motion.a
+                      href="https://github.com/JerryWu0430/Yusuf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variants={{
+                        initial: { x: -2, y: 2 },
+                        hover: { x: 2, y: -2 }
+                      }}
+                      initial="initial"
+                      className="inline-flex pointer-events-auto"
+                    >
+                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                    </motion.a>
                   </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Dec 2024</p>
                 </div>
@@ -899,8 +912,7 @@ export default function Portfolio() {
 
           {/* OpenAnnot */}
           <motion.div
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
+            whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -921,14 +933,19 @@ export default function Portfolio() {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">OpenAnnot</h3>
-                    <a href="https://github.com/JerryWu0430/OpenAnnot" target="_blank" rel="noopener noreferrer" className="inline-flex pointer-events-auto">
-                      <motion.div
-                        animate={{ rotate: hovered ? 0 : 45 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      >
-                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                      </motion.div>
-                    </a>
+                    <motion.a
+                      href="https://github.com/JerryWu0430/OpenAnnot"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variants={{
+                        initial: { x: -2, y: 2 },
+                        hover: { x: 2, y: -2 }
+                      }}
+                      initial="initial"
+                      className="inline-flex pointer-events-auto"
+                    >
+                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                    </motion.a>
                   </div>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Oct 2024</p>
                 </div>
