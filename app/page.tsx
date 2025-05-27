@@ -386,170 +386,173 @@ export default function Portfolio() {
         />
       </div>
 
-      {/* Mobile Navigation */}
-      {isMobile && <MobileNav />}
-      
-      {/* Hero Section */}
-      <div className="relative min-h-[120vh] h-[120vh]">
-        <div className="absolute inset-y--10 right-1 w-[100vw] h-full pointer-events-none z-[100] overflow-visible ">
-            <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
-        </div>
-        {/* Replace the header div (the one with ref={headerRef}) with this updated version: */}
-        <div
-          ref={headerRef}
-          className={`transition-all duration-700 ease-in-out ${
-            scrolled && !isShortWindow
-              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none"
-              : scrolled && isShortWindow
-                ? "relative w-full pt-6 md:pt-10 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] mb-20"
-                : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none"
-          }`}
-        >
-          {scrolled ? (
-            <div className="transition-all duration-700">
-              <motion.h1
-                key="scrolled-title"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2 }}
-                className="text-[48px] font-bold"
-              >
-                Jerry Wu
-              </motion.h1>
-              <motion.h2
-                key="scrolled-subtitle"
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 1.2 }}
-                className="text-[20px] md:text-xl text-gray-300 mt-1"
-              >
-                Software Engineer
-              </motion.h2>
-              <motion.div
-                key="scrolled-location"
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 1.2 }}
-                className="flex items-center mt-2 text-gray-400"
-              >
-                <MapPin className="h-4 w-4 mr-1" />
-                <span>London, UK 🇬🇧</span>
-              </motion.div>
-              {!isShortWindow && (
-                <motion.p
-                  key="scrolled-description"
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 1.2 }}
-                  className="mt-3 max-w-[200px] md:max-w-[300px] text-[15px] text-gray-300"
-                >
-                  I'm a software engineer with expertise in building user-focused applications. I also have a passion in the application of AI that solve real-world problems.
-                </motion.p>
-              )}
-            </div>
-          ) : (
-            <AnimatePresence mode="wait">
-              <motion.h1
-                key="initial-title"
-                initial="initial"
-                animate={isTransitioning ? "pixelate" : "initial"}
-                exit="exit"
-                variants={textVariants}
-                transition={{ duration: 1.2 }}
-                className="text-4xl md:text-5xl font-bold"
-              >
-                Hi, I'm Jerry Wu{" "}
-                <motion.span
-                  key="wave-emoji"
-                  animate={{
-                    rotate: [0, 10, 0],
-                    transformOrigin: "bottom right",
-                  }}
-                  transition={{
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop",
-                    duration: 2,
-                    repeatDelay: 0,
-                  }}
-                  className="inline-block"
-                >
-                  👋
-                </motion.span>
-              </motion.h1>
-              <motion.p
-                key="initial-description"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.2 }}
-                className="mt-4 max-w-xs md:max-w-sm text-sm md:text-base text-gray-300"
-              >
-                I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
-              </motion.p>
-              {/* Social Media Icons and Resume Button - Initially under About Me */}
-              <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6">
-                <SocialAndResume />
-              </motion.div>
-            </AnimatePresence>
-          )}
-        </div>
-
-        {/* Left Navigation Menu - Appears when scrolled (desktop only) */}
-        {!isMobile && (
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{
-              opacity: scrolled && !isShortWindow ? 1 : 0,
-              x: scrolled && !isShortWindow ? 0 : -20,
-              pointerEvents: scrolled && !isShortWindow ? "auto" : "none",
-            }}
-            transition={{ duration: 0.5 }}
-            className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-[200] hidden md:block"
-          >
-            <nav className="space-y-6">
-              <NavItem
-                sectionRef={section1Ref}
-                label="About Me"
-                scrollToSection={scrollToSection}
-                activeSection={activeSection}
-                sectionId="section1"
-              />
-              <NavItem
-                sectionRef={section2Ref}
-                label="Experiences"
-                scrollToSection={scrollToSection}
-                activeSection={activeSection}
-                sectionId="section2"
-              />
-              <NavItem
-                sectionRef={section3Ref}
-                label="Education"
-                scrollToSection={scrollToSection}
-                activeSection={activeSection}
-                sectionId="section3"
-              />
-              <NavItem
-                sectionRef={section4Ref}
-                label="Projects"
-                scrollToSection={scrollToSection}
-                activeSection={activeSection}
-                sectionId="section4"
-              />
-            </nav>
-
-            {/* Social Media Icons and Resume Button */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="mt-24"
+      {/* Header always at the top for small windows, sticky/fixed for large */}
+      <div
+        ref={headerRef}
+        className={
+          isMobile || isShortWindow
+            ? "relative w-full pt-6 px-6 z-[200] mb-0"
+            : scrolled
+              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
+              : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
+        }
+      >
+        {(scrolled && !(isMobile || isShortWindow)) || (isMobile || isShortWindow) ? (
+          <div className="transition-all duration-700">
+            <motion.h1
+              key="scrolled-title"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
+              className="text-[48px] font-bold"
             >
+              Jerry Wu
+            </motion.h1>
+            <motion.h2
+              key="scrolled-subtitle"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 1.2 }}
+              className="text-[#ffffff] text-[20px] md:text-xl text-gray-300 mt-1"
+            >
+              Software Engineer
+            </motion.h2>
+            <motion.div
+              key="scrolled-location"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 1.2 }}
+              className="flex items-center mt-2 text-gray-400"
+            >
+              <MapPin className="h-4 w-4 mr-1" />
+              <span>London, UK 🇬🇧</span>
+            </motion.div>
+            {!isShortWindow && (
+              <motion.p
+                key="scrolled-description"
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 1.2 }}
+                className="mt-3 max-w-[300px] md:max-w-[300px] text-[15px] text-gray-300"
+              >
+                I'm a software engineer with expertise in building user-focused applications. I also have a passion in the application of AI that solve real-world problems.
+              </motion.p>
+            )}
+            {/* Always show social buttons below header on small windows */}
+            {(isMobile || isShortWindow) && (
+              <div className="mt-6">
+                <SocialAndResume />
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <motion.h1
+              key="initial-title"
+              initial="initial"
+              animate={isTransitioning && !(isMobile || isShortWindow) ? "pixelate" : "initial"}
+              exit="exit"
+              variants={textVariants}
+              transition={{ duration: 1.2 }}
+              className="text-4xl md:text-5xl font-bold"
+            >
+              Hi, I'm Jerry Wu{" "}
+              <motion.span
+                key="wave-emoji"
+                animate={{
+                  rotate: [0, 10, 0],
+                  transformOrigin: "bottom right",
+                }}
+                transition={{
+                  repeat: Number.POSITIVE_INFINITY,
+                  repeatType: "loop",
+                  duration: 2,
+                  repeatDelay: 0,
+                }}
+                className="inline-block"
+              >
+                👋
+              </motion.span>
+            </motion.h1>
+            <motion.p
+              key="initial-description"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2 }}
+              className="mt-4 max-w-xs md:max-w-sm text-sm md:text-base text-gray-300"
+            >
+              I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
+            </motion.p>
+            {/* Social Media Icons and Resume Button - Initially under About Me */}
+            <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6">
               <SocialAndResume />
             </motion.div>
-          </motion.div>
+          </>
         )}
       </div>
 
-      {/* Section 1 - About Me */}
+      {!isMobile && !isShortWindow && (
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{
+            opacity: scrolled ? 1 : 0,
+            x: scrolled ? 0 : -20,
+            pointerEvents: scrolled ? "auto" : "none",
+          }}
+          transition={{ duration: 0.5 }}
+          className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-[200] hidden md:block"
+        >
+          <nav className="space-y-6">
+            <NavItem
+              sectionRef={section1Ref}
+              label="About Me"
+              scrollToSection={scrollToSection}
+              activeSection={activeSection}
+              sectionId="section1"
+            />
+            <NavItem
+              sectionRef={section2Ref}
+              label="Experiences"
+              scrollToSection={scrollToSection}
+              activeSection={activeSection}
+              sectionId="section2"
+            />
+            <NavItem
+              sectionRef={section3Ref}
+              label="Education"
+              scrollToSection={scrollToSection}
+              activeSection={activeSection}
+              sectionId="section3"
+            />
+            <NavItem
+              sectionRef={section4Ref}
+              label="Projects"
+              scrollToSection={scrollToSection}
+              activeSection={activeSection}
+              sectionId="section4"
+            />
+          </nav>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-24"
+          >
+            <SocialAndResume />
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Hero Section (background, lanyard, etc.) only for large screens */}
+      {!(isMobile || isShortWindow) && (
+        <div className="relative min-h-[120vh] h-[120vh]">
+          <div className="absolute inset-y--10 right-1 w-[100vw] h-full pointer-events-none z-[100] overflow-visible ">
+            <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
+          </div>
+        </div>
+      )}
+
+      {/* About Me section (no overlap, always below header) */}
       <section ref={section1Ref} id="section1" className="relative z-[150] py-20">
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -558,7 +561,7 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-[28px] font-semibold mb-5">About Me</h2>
+          <h2 className="text-[20px] font-semibold mb-5">About Me</h2>
           <div>
             <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>I'm a software engineer passionate about building intuitive, <span style={{ color: 'white', fontWeight: 'bold' }}>full-stack</span> applications that bring together clean design, rich interactivity, and smart systems. My favorite work blends UI/UX precision with the possibilities of <span style={{ color: 'white', fontWeight: 'bold' }}>AI</span> — from thoughtful animations to integrating large language models that enhance user experience.</p>
             <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>Currently, I'm a Software Engineering Intern at Goodnotes (starting soon!), where I'll be joining the B2B team. I'm also a second-year Computer Science student at UCL, where I've been actively involved in both technical and <span style={{ color: 'white', fontWeight: 'bold' }}>leadership</span> roles — serving as the Technical Director at the UCL Legal Tech Society, Data Lead at the UCL Data Visualisation Society, and Vice President of Growth at the UCL FinTech Society.</p>
@@ -577,7 +580,7 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-[28px] font-semibold mb-5">Experience</h2>
+          <h2 className="text-[20px] font-semibold mb-5">Experience</h2>
           
           {/* GoodNotes */}
           <motion.div
@@ -628,7 +631,7 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-[28px] font-semibold mb-5">Education</h2>
+          <h2 className="text-[20px] font-semibold mb-5">Education</h2>
           <motion.div
             whileHover="hover"
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
@@ -707,7 +710,7 @@ export default function Portfolio() {
           viewport={{ once: true }}
           className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
         >
-          <h2 className="text-[28px] font-semibold mb-5">Projects</h2>
+          <h2 className="text-[20px] font-semibold mb-5">Projects</h2>
 
           {/* Personal Portfolio */}
           <motion.div
