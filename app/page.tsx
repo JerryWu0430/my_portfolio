@@ -406,19 +406,19 @@ export default function Portfolio() {
       <div
         ref={headerRef}
         className={
-          isMobile || isShortWindow || isMdWindow
+          isMobile || isShortWindow
             ? "relative w-full pt-6 px-6 z-[200] mb-0"
             : scrolled
               ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
               : "fixed top-1/2 left-0 md:left-[5%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
         }
         style={
-          !isMobile && !isShortWindow && !isMdWindow && !scrolled
+          !isMobile && !isShortWindow && !scrolled
             ? { left: leftOffset }
             : undefined
         }
       >
-        {(scrolled && !(isMobile || isShortWindow || isMdWindow)) || (isMobile || isShortWindow || isMdWindow) ? (
+        {(scrolled && !(isMobile || isShortWindow)) || (isMobile || isShortWindow) ? (
           <div className="transition-all duration-700">
             <motion.h1
               key="scrolled-title"
@@ -460,7 +460,7 @@ export default function Portfolio() {
               </motion.p>
             )}
             {/* Always show social buttons below header on small windows */}
-            {(isMobile || isShortWindow || isMdWindow) && (
+            {(isMobile || isShortWindow) && (
               <div className="mt-6">
                 <SocialAndResume />
               </div>
@@ -471,11 +471,11 @@ export default function Portfolio() {
             <motion.h1
               key="initial-title"
               initial="initial"
-              animate={isTransitioning && !(isMobile || isShortWindow || isMdWindow) ? "pixelate" : "initial"}
+              animate={isTransitioning && !(isMobile || isShortWindow) ? "pixelate" : "initial"}
               exit="exit"
               variants={textVariants}
               transition={{ duration: 1.2 }}
-              className="text-6xl md:text-6xl font-bold"
+              className="text-6xl md:text-[50px] lg:text-6xl md:pl-10 lg:pl-0 font-bold"
             >
               Hi, I'm Jerry Wu{" "}
               <motion.span
@@ -500,19 +500,20 @@ export default function Portfolio() {
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.2 }}
-              className="mt-4 max-w-xs md:max-w-sm text-sm md:text-xl text-#FFFFFF"
+              className="mt-4 max-w-xs md:max-w-sm md:pl-10 lg:pl-0 text-sm md:text-lg text-#FFFFFF"
             >
               Software Engineer with a strong passion for AI and building user-centric solutions to real-world problems.
             </motion.p>
             {/* Social Media Icons and Resume Button - Initially under About Me */}
-            <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6">
+            <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6 md:pl-10 lg:pl-0 ">
               <SocialAndResume />
             </motion.div>
           </>
         )}
       </div>
 
-      {!isMobile && !isShortWindow && !isMdWindow && (
+      {/* Sidebar Navigation (now for md and up) */}
+      {!isMobile && !isShortWindow && (
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{
@@ -564,8 +565,8 @@ export default function Portfolio() {
         </motion.div>
       )}
 
-      {/* Hero Section (background, lanyard, etc.) only for large screens */}
-      {!(isMobile || isShortWindow || isMdWindow) && (
+      {/* Hero Section (background, lanyard, etc.) now for md and up */}
+      {!(isMobile || isShortWindow) && (
         <div className="relative min-h-[120vh] h-[120vh]">
           <div className="absolute top-0 right-0 w-full h-[600px] pointer-events-none z-[100] overflow-visible">
             <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
@@ -580,7 +581,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">About Me</h2>
           <div>
@@ -599,7 +600,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Experience</h2>
           
@@ -652,71 +653,56 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Education</h2>
           <motion.div
             whileHover="hover"
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex gap-4 items-center">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
-                <img src="/ucl.png" alt="ucl"  />
+            <div className="flex gap-4 items-center mid-md-stack-inner">
+              {/* Layer 1: Image full width on mid-md-stack */}
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                <img src="/ucl.png" alt="ucl" className="object-cover w-full h-full" />
               </div>
-              <div className="flex flex-col">
-              <div className="flex justify-between items-center">
+              {/* Layer 2: Title & Date */}
+              <div className="flex flex-col mid-md-stack-title">
+                <div className="flex justify-between items-center mid-md-stack-title-row">
                   <h3 className="text-lg font-semibold">University College London</h3>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2023 - Jun 2026</p>
                 </div>
+                {/* Layer 3: Description */}
                 <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
                   <i>Bachelor of Science in Computer Science</i>
                 </p>
+                {/* Layer 4: Activities & Societies */}
                 <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
                   <p><b>Activities & Societies</b>: Vice President @ UCL FinTech Society, Data Lead @ UCL DataViz Society, Technical Director @ UCL Legal Tech Society, Volleyball Mixed Team @ LUSL UCL Mixed Team</p>
                 </div>
-
               </div>
             </div>
           </motion.div>
 
           <motion.div
             whileHover="hover"
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex gap-4 items-center">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
-                <img src="/asm.png" alt="ASM"  />
+            <div className="flex gap-4 items-center mid-md-stack-inner">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                <img src="/asm.png" alt="ASM" className="object-cover w-full h-full" />
               </div>
-              <div className="flex flex-col">
-
-                <div className="flex justify-between items-center">
+              <div className="flex flex-col mid-md-stack-title">
+                <div className="flex justify-between items-center mid-md-stack-title-row">
                   <h3 className="text-lg font-semibold">American School of Milan</h3>
                   <p className="text-xs text-[#cccccc] transition-colors duration-300">Aug 2019 - May 2023</p>
                 </div>
-
                 <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
                   <i>International Baccalaureate Diploma</i>
                 </p>
-
                 <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
                   <p><b>Activities & Societies:</b> Tech Team Leader, Varsity Volleyball, Varsity Basketball, National Honor Society Member</p>
                   <p><b>Awards:</b> Honor Roll, Computer Science Award</p>
                 </div>
-
               </div>
             </div>
           </motion.div>
@@ -731,7 +717,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Projects</h2>
 
@@ -739,21 +725,14 @@ export default function Portfolio() {
           <motion.div
             onHoverStart={() => setHovered('portfolio')}
             onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex gap-4 items-center">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center mid-md-stack-inner">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
                 <img src="/portfolio.png" alt="Personal Portfolio" className="object-contain w-full h-full" />
               </div>
-              <div className="flex flex-col">
-                <div className="flex justify-between items-center">
+              <div className="flex flex-col mid-md-stack-title">
+                <div className="flex justify-between items-center mid-md-stack-title-row">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">Portfolio Website</h3>
                     <motion.a
@@ -787,24 +766,17 @@ export default function Portfolio() {
           <motion.div
             onHoverStart={() => setHovered('readingstar')}
             onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex gap-4 items-center">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center mid-md-stack-inner">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
                 <img 
                   src="/readingstar.png" 
                   alt="ReadingStar" 
                 />
               </div>
-              <div className="flex flex-col">
-                <div className="flex justify-between items-center">
+              <div className="flex flex-col mid-md-stack-title">
+                <div className="flex justify-between items-center mid-md-stack-title-row">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold ">ReadingStar</h3>
                     <motion.a
@@ -838,24 +810,17 @@ export default function Portfolio() {
           <motion.div
             onHoverStart={() => setHovered('earnit')}
             onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex gap-4 items-center">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center mid-md-stack-inner">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
                 <img 
                   src="/earnit.png" 
                   alt="EarnIt" 
                 />
               </div>
-              <div className="flex flex-col">
-                <div className="flex justify-between items-center">
+              <div className="flex flex-col mid-md-stack-title">
+                <div className="flex justify-between items-center mid-md-stack-title-row">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">EarnIt</h3>
                     <motion.a
@@ -889,24 +854,17 @@ export default function Portfolio() {
           <motion.div
             onHoverStart={() => setHovered('yusuf')}
             onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex gap-4 items-center">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center mid-md-stack-inner">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
                 <img 
                   src="/yusuf.png" 
                   alt="Yusuf AI" 
                 />
               </div>
-              <div className="flex flex-col">
-                <div className="flex justify-between items-center">
+              <div className="flex flex-col mid-md-stack-title">
+                <div className="flex justify-between items-center mid-md-stack-title-row">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">Yusuf AI</h3>
                     <motion.a
@@ -940,24 +898,17 @@ export default function Portfolio() {
           <motion.div
             onHoverStart={() => setHovered('openannot')}
             onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex gap-4 items-center">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)]">
+            <div className="flex gap-4 items-center mid-md-stack-inner">
+              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
                 <img 
                   src="/openannot.png" 
                   alt="OpenAnnot" 
                 />
               </div>
-              <div className="flex flex-col">
-                <div className="flex justify-between items-center">
+              <div className="flex flex-col mid-md-stack-title">
+                <div className="flex justify-between items-center mid-md-stack-title-row">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-semibold">OpenAnnot</h3>
                     <motion.a
