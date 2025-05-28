@@ -11,7 +11,7 @@
   font-display: swap;
 }
 
-html {
+html, body {
   @apply font-inter;
   font-family: 'Inter Custom', ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "ss03", "cv02", "cv11";

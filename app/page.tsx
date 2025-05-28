@@ -454,9 +454,9 @@ export default function Portfolio() {
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 1.2 }}
-                className="mt-3 max-w-[300px] md:max-w-[300px] text-[15px] text-gray-300"
+                className="mt-3 max-w-[300px] md:max-w-[300px] text-[16px] text-gray-300"
               >
-                I'm a software engineer with expertise in building user-focused applications. I also have a passion in the application of AI that solve real-world problems.
+                I build user-focused applications with AI in mind.
               </motion.p>
             )}
             {/* Always show social buttons below header on small windows */}
@@ -500,9 +500,9 @@ export default function Portfolio() {
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.2 }}
-              className="mt-4 max-w-xs md:max-w-sm text-sm md:text-base text-gray-300"
+              className="mt-4 max-w-xs md:max-w-sm text-sm md:text-xl text-#FFFFFF"
             >
-              I'm a software engineer with expertise in building user-focused applications. I also have a passion in the appliation of AI that solve real-world problems.
+              Software Engineer with a strong passion for AI and building user-centric solutions to real-world problems.
             </motion.p>
             {/* Social Media Icons and Resume Button - Initially under About Me */}
             <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6">
@@ -521,7 +521,7 @@ export default function Portfolio() {
             pointerEvents: scrolled ? "auto" : "none",
           }}
           transition={{ duration: 0.5 }}
-          className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-[200] hidden md:block"
+          className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-[200] hidden md:block text-[12px]"
         >
           <nav className="space-y-6">
             <NavItem
