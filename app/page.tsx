@@ -638,18 +638,7 @@ export default function Portfolio() {
                 </div> */}
               </div>
             </div>
-            <motion.a
-              href="https://github.com/JerryWu0430/my_portfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex pointer-events-auto"
-              variants={arrowVariants}
-              initial="initial"
-              animate={hovered === 'goodnotes' ? 'hover' : 'initial'}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            >
-              <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-            </motion.a>
+
           </motion.div>
 
           
