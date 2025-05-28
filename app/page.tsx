@@ -580,7 +580,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">About Me</h2>
           <div>
@@ -599,7 +599,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Experience</h2>
           
@@ -652,7 +652,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Education</h2>
           <motion.div
@@ -731,7 +731,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
+          className="w-full lg:w-[55%] xl:w-[50%] xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Projects</h2>
 
