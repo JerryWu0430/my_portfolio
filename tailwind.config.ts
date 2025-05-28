@@ -84,6 +84,9 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         rainbow: "rainbow var(--speed, 2s) infinite linear",
       },
+      fontFamily: {
+        inter: ['Inter Custom', 'ui-sans-serif', 'system-ui'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

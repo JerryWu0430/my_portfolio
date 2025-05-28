@@ -1,8 +1,20 @@
+* { font-feature-settings: "ss03", "cv02", "cv11" !important; }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Inter Custom';
+  src: url('/fonts/InterVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 html {
+  @apply font-inter;
+  font-family: 'Inter Custom', ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss03", "cv02", "cv11";
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
