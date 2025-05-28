@@ -378,7 +378,13 @@ export default function Portfolio() {
     )
   }
 
-  const [hovered, setHovered] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  // Define arrow motion variants
+  const arrowVariants = {
+    initial: { x: -2, y: 2 },
+    hover: { x: 2, y: -2 },
+  };
 
   return (
     <main className="min-h-screen text-white overflow-x-hidden relative">
@@ -561,7 +567,7 @@ export default function Portfolio() {
       {/* Hero Section (background, lanyard, etc.) only for large screens */}
       {!(isMobile || isShortWindow || isMdWindow) && (
         <div className="relative min-h-[120vh] h-[120vh]">
-          <div className="absolute inset-y--10 right-1 w-[100vw] h-full pointer-events-none z-[100] overflow-visible ">
+          <div className="absolute top-0 right-0 w-full h-[600px] pointer-events-none z-[100] overflow-visible">
             <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
           </div>
         </div>
@@ -599,7 +605,8 @@ export default function Portfolio() {
           
           {/* GoodNotes */}
           <motion.div
-            whileHover="hover"
+            onHoverStart={() => setHovered('goodnotes')}
+            onHoverEnd={() => setHovered(null)}
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -631,6 +638,18 @@ export default function Portfolio() {
                 </div> */}
               </div>
             </div>
+            <motion.a
+              href="https://github.com/JerryWu0430/my_portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex pointer-events-auto"
+              variants={arrowVariants}
+              initial="initial"
+              animate={hovered === 'goodnotes' ? 'hover' : 'initial'}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            >
+              <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+            </motion.a>
           </motion.div>
 
           
@@ -729,7 +748,8 @@ export default function Portfolio() {
 
           {/* Personal Portfolio */}
           <motion.div
-            whileHover="hover"
+            onHoverStart={() => setHovered('portfolio')}
+            onHoverEnd={() => setHovered(null)}
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -751,12 +771,11 @@ export default function Portfolio() {
                       href="https://github.com/JerryWu0430/my_portfolio"
                       target="_blank"
                       rel="noopener noreferrer"
-                      variants={{
-                        initial: { x: -2, y: 2 },
-                        hover: { x: 2, y: -2 }
-                      }}
-                      initial="initial"
                       className="inline-flex pointer-events-auto"
+                      variants={arrowVariants}
+                      initial="initial"
+                      animate={hovered === 'portfolio' ? 'hover' : 'initial'}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                       <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
                     </motion.a>
@@ -777,7 +796,8 @@ export default function Portfolio() {
 
           {/* ReadingStar */}
           <motion.div
-            whileHover="hover"
+            onHoverStart={() => setHovered('readingstar')}
+            onHoverEnd={() => setHovered(null)}
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -802,12 +822,11 @@ export default function Portfolio() {
                       href="https://github.com/JerryWu0430/readingstar"
                       target="_blank"
                       rel="noopener noreferrer"
-                      variants={{
-                        initial: { x: -2, y: 2 },
-                        hover: { x: 2, y: -2 }
-                      }}
-                      initial="initial"
                       className="inline-flex pointer-events-auto"
+                      variants={arrowVariants}
+                      initial="initial"
+                      animate={hovered === 'readingstar' ? 'hover' : 'initial'}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                       <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
                     </motion.a>
@@ -828,7 +847,8 @@ export default function Portfolio() {
 
           {/* EarnIt */}
           <motion.div
-            whileHover="hover"
+            onHoverStart={() => setHovered('earnit')}
+            onHoverEnd={() => setHovered(null)}
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -853,12 +873,11 @@ export default function Portfolio() {
                       href="https://github.com/JerryWu0430/EarnIt"
                       target="_blank"
                       rel="noopener noreferrer"
-                      variants={{
-                        initial: { x: -2, y: 2 },
-                        hover: { x: 2, y: -2 }
-                      }}
-                      initial="initial"
                       className="inline-flex pointer-events-auto"
+                      variants={arrowVariants}
+                      initial="initial"
+                      animate={hovered === 'earnit' ? 'hover' : 'initial'}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                       <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
                     </motion.a>
@@ -879,7 +898,8 @@ export default function Portfolio() {
 
           {/* Yusuf AI */}
           <motion.div
-            whileHover="hover"
+            onHoverStart={() => setHovered('yusuf')}
+            onHoverEnd={() => setHovered(null)}
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -904,12 +924,11 @@ export default function Portfolio() {
                       href="https://github.com/JerryWu0430/Yusuf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      variants={{
-                        initial: { x: -2, y: 2 },
-                        hover: { x: 2, y: -2 }
-                      }}
-                      initial="initial"
                       className="inline-flex pointer-events-auto"
+                      variants={arrowVariants}
+                      initial="initial"
+                      animate={hovered === 'yusuf' ? 'hover' : 'initial'}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                       <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
                     </motion.a>
@@ -930,7 +949,8 @@ export default function Portfolio() {
 
           {/* OpenAnnot */}
           <motion.div
-            whileHover="hover"
+            onHoverStart={() => setHovered('openannot')}
+            onHoverEnd={() => setHovered(null)}
             className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
           >
             <BorderTrail
@@ -955,12 +975,11 @@ export default function Portfolio() {
                       href="https://github.com/JerryWu0430/OpenAnnot"
                       target="_blank"
                       rel="noopener noreferrer"
-                      variants={{
-                        initial: { x: -2, y: 2 },
-                        hover: { x: 2, y: -2 }
-                      }}
-                      initial="initial"
                       className="inline-flex pointer-events-auto"
+                      variants={arrowVariants}
+                      initial="initial"
+                      animate={hovered === 'openannot' ? 'hover' : 'initial'}
+                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                       <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
                     </motion.a>
