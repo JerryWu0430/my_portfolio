@@ -46,6 +46,15 @@ export default function Portfolio() {
   const isShortWindow = windowHeight < 700 // Threshold for short windows
   const isMdWindow = windowWidth >= 768 && windowWidth < 1024 // Tailwind md range
 
+  let leftOffset = 0;
+  if (!isMobile && !isShortWindow && !isMdWindow && !scrolled) {
+    // Interpolate between 0% at 768px and 20% at 1536px (lg)
+    const minW = 768, maxW = 1536;
+    const minPct = 0, maxPct = 0.2;
+    const pct = Math.max(minPct, Math.min(maxPct, ((windowWidth - minW) / (maxW - minW)) * (maxPct - minPct) + minPct));
+    leftOffset = windowWidth * pct;
+  }
+
   // Update the useEffect that handles section changes with debounce
   useEffect(() => {
     // Clear any existing timer
@@ -395,7 +404,12 @@ export default function Portfolio() {
             ? "relative w-full pt-6 px-6 z-[200] mb-0"
             : scrolled
               ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
-              : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
+              : "fixed top-1/2 left-0 md:left-[5%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
+        }
+        style={
+          !isMobile && !isShortWindow && !isMdWindow && !scrolled
+            ? { left: leftOffset }
+            : undefined
         }
       >
         {(scrolled && !(isMobile || isShortWindow || isMdWindow)) || (isMobile || isShortWindow || isMdWindow) ? (
@@ -455,7 +469,7 @@ export default function Portfolio() {
               exit="exit"
               variants={textVariants}
               transition={{ duration: 1.2 }}
-              className="text-4xl md:text-5xl font-bold"
+              className="text-6xl md:text-6xl font-bold"
             >
               Hi, I'm Jerry Wu{" "}
               <motion.span
