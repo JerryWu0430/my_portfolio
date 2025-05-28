@@ -42,8 +42,9 @@ export default function Portfolio() {
   const activeSectionTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   // Inside the Portfolio component, add this near the top with other state variables:
-  const { height: windowHeight } = useWindowSize()
+  const { width: windowWidth, height: windowHeight } = useWindowSize()
   const isShortWindow = windowHeight < 700 // Threshold for short windows
+  const isMdWindow = windowWidth >= 768 && windowWidth < 1024 // Tailwind md range
 
   // Update the useEffect that handles section changes with debounce
   useEffect(() => {
@@ -390,14 +391,14 @@ export default function Portfolio() {
       <div
         ref={headerRef}
         className={
-          isMobile || isShortWindow
+          isMobile || isShortWindow || isMdWindow
             ? "relative w-full pt-6 px-6 z-[200] mb-0"
             : scrolled
               ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
               : "fixed top-1/2 left-0 md:left-[10%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
         }
       >
-        {(scrolled && !(isMobile || isShortWindow)) || (isMobile || isShortWindow) ? (
+        {(scrolled && !(isMobile || isShortWindow || isMdWindow)) || (isMobile || isShortWindow || isMdWindow) ? (
           <div className="transition-all duration-700">
             <motion.h1
               key="scrolled-title"
@@ -439,7 +440,7 @@ export default function Portfolio() {
               </motion.p>
             )}
             {/* Always show social buttons below header on small windows */}
-            {(isMobile || isShortWindow) && (
+            {(isMobile || isShortWindow || isMdWindow) && (
               <div className="mt-6">
                 <SocialAndResume />
               </div>
@@ -450,7 +451,7 @@ export default function Portfolio() {
             <motion.h1
               key="initial-title"
               initial="initial"
-              animate={isTransitioning && !(isMobile || isShortWindow) ? "pixelate" : "initial"}
+              animate={isTransitioning && !(isMobile || isShortWindow || isMdWindow) ? "pixelate" : "initial"}
               exit="exit"
               variants={textVariants}
               transition={{ duration: 1.2 }}
@@ -491,7 +492,7 @@ export default function Portfolio() {
         )}
       </div>
 
-      {!isMobile && !isShortWindow && (
+      {!isMobile && !isShortWindow && !isMdWindow && (
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{
@@ -544,7 +545,7 @@ export default function Portfolio() {
       )}
 
       {/* Hero Section (background, lanyard, etc.) only for large screens */}
-      {!(isMobile || isShortWindow) && (
+      {!(isMobile || isShortWindow || isMdWindow) && (
         <div className="relative min-h-[120vh] h-[120vh]">
           <div className="absolute inset-y--10 right-1 w-[100vw] h-full pointer-events-none z-[100] overflow-visible ">
             <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
@@ -559,7 +560,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
+          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">About Me</h2>
           <div>
@@ -578,7 +579,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
+          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Experience</h2>
           
@@ -629,7 +630,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
+          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Education</h2>
           <motion.div
@@ -708,7 +709,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="w-full md:w-[50%] lg:w-[50%] ml-auto mr-0 md:mr-12 lg:mr-24 flex flex-col justify-center px-6 md:px-12 group/section"
+          className="w-full lg:w-[50%] ml-0 mr-0 px-6 lg:ml-auto lg:mr-24 lg:px-12 flex flex-col justify-center group/section"
         >
           <h2 className="text-[20px] font-semibold mb-5">Projects</h2>
 
