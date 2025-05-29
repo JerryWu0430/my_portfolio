@@ -27,7 +27,7 @@ export default function Preloader({ onFinish }: { onFinish: () => void }) {
         "#container",
         "https://cdn.jsdelivr.net/npm/vara@1.4.0/fonts/Satisfy/SatisfySL.json",
         [
-          { text: "Jerry's Portfolio :)", y: 90, fromCurrentPosition: { y: false }, duration: 4000 }
+          { text: "Jerry Wu :)", y: 90, fromCurrentPosition: { y: false }, duration: 4000 }
         ],
         {
           strokeWidth: 2,

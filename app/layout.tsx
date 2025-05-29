@@ -15,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <head />
+      <head>
+        <link rel="icon" href="/favicon.png" />
+      </head>
       <body className="font-inter" suppressHydrationWarning>
         {children}
       </body>
