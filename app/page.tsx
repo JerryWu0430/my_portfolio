@@ -14,6 +14,7 @@ import { Canvas } from "@react-three/fiber"
 import * as THREE from "three"
 import { BorderTrail } from "@/components/ui/border-trail"
 import Preloader from "@/components/ui/Preloader"
+import 'animate.css';
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
@@ -205,9 +206,9 @@ export default function Portfolio() {
           <Instagram className="h-6 w-6 hover:text-gray-400 transition-colors" />
         </Link>
       </div>
-      <Link href="/resume.pdf" target="_blank" className="pointer-events-auto">
+      <a href="/resume.pdf" download="Jerry_Wu_Resume.pdf" className="pointer-events-auto">
         <RainbowButton className="text-sm h-9 px-6">Resume</RainbowButton>
-      </Link>
+      </a>
     </div>
   )
 
@@ -481,7 +482,7 @@ export default function Portfolio() {
                 exit="exit"
                 variants={textVariants}
                 transition={{ duration: 1.2 }}
-                className="text-6xl md:text-[50px] lg:text-6xl md:pl-10 lg:pl-0 font-bold"
+                className="text-6xl md:text-[50px] lg:text-6xl md:pl-10 lg:pl-0 font-bold animate__animated animate__fadeInDown"
               >
                 Hi, I'm Jerry Wu{" "}
                 <motion.span
@@ -506,12 +507,12 @@ export default function Portfolio() {
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.2 }}
-                className="mt-4 max-w-xs md:max-w-sm md:pl-10 lg:pl-0 text-sm md:text-lg text-#FFFFFF"
+                className="mt-4 max-w-xs md:max-w-sm md:pl-10 lg:pl-0 text-sm md:text-lg text-#FFFFFF animate__animated animate__fadeInDown"
               >
                 Software Engineer with a strong passion for AI and building user-centric solutions to real-world problems.
               </motion.p>
               {/* Social Media Icons and Resume Button - Initially under About Me */}
-              <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6 md:pl-10 lg:pl-0 ">
+              <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6 md:pl-10 lg:pl-0 animate__animated animate__fadeInDown">
                 <SocialAndResume />
               </motion.div>
             </>
