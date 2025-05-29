@@ -943,6 +943,24 @@ export default function Portfolio() {
 
           </motion.div>
         </section>
+        {/* Footer - Site credits */}
+        <footer className="w-full py-10 px-6 text-[14px] text-[#cccccc] animate__animated animate__fadeInUp text-left
+          md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 md:px-12 lg:ml-auto lg:mr-0 lg:px-12">
+          Loosely designed in 
+          <a href="https://www.framer.com/" target="_blank" rel="noopener noreferrer" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">Framer</a>
+          and vibe coded in 
+          <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">Visual Studio Code</a>
+          by yours truly. Built with 
+          <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">Next.js</a>
+          and 
+          <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">Tailwind CSS</a>, deployed with 
+          <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">Vercel</a>
+          with the 
+          <a href="https://is.a-dev.com/" target="_blank" rel="noopener noreferrer" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">is.a-dev</a>
+          domain. All text is set in the 
+          <a href="https://rsms.me/inter/" target="_blank" rel="noopener noreferrer" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">Inter</a>
+          typeface. Shoot me an<a href="mailto:woohaoran@gmail.com" className="text-white no-underline hover:text-gray-400 transition-colors mx-1">email</a>if you have any question! 😎
+        </footer>
       </main>
     </>
   )
