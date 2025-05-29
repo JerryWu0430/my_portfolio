@@ -13,6 +13,7 @@ import Lanyard from "@/components/ui/lanyard"
 import { Canvas } from "@react-three/fiber"
 import * as THREE from "three"
 import { BorderTrail } from "@/components/ui/border-trail"
+import Preloader from "@/components/ui/Preloader"
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
@@ -20,6 +21,9 @@ export default function Portfolio() {
   const headerRef = useRef<HTMLDivElement>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const isMobile = useMobile()
+
+  // Preloader state
+  const [loading, setLoading] = useState(true);
 
   // Add useEffect for scroll to top on mount
   useEffect(() => {
@@ -387,559 +391,558 @@ export default function Portfolio() {
   };
 
   return (
-    <main className="min-h-screen text-white overflow-x-hidden relative">
-      {/* Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <Dither
-          waveColor={[0.2, 0.2, 0.2]}
-          disableAnimation={false}
-          enableMouseInteraction={true}
-          mouseRadius={0.15}
-          colorNum={4}
-          waveAmplitude={0.3}
-          waveFrequency={3}
-          waveSpeed={0.05}
-        />
-      </div>
+    <>
+      {loading && <Preloader onFinish={() => setLoading(false)} />}
+      <main className="min-h-screen text-white overflow-x-hidden relative" style={{ display: loading ? 'none' : undefined }}>
+        {/* Background */}
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <Dither
+            waveColor={[0.2, 0.2, 0.2]}
+            disableAnimation={false}
+            enableMouseInteraction={true}
+            mouseRadius={0.15}
+            colorNum={4}
+            waveAmplitude={0.3}
+            waveFrequency={3}
+            waveSpeed={0.05}
+          />
+        </div>
 
-      {/* Header always at the top for small windows, sticky/fixed for large */}
-      <div
-        ref={headerRef}
-        className={
-          isMobile || isShortWindow
-            ? "relative w-full pt-6 px-6 z-[200] mb-0"
-            : scrolled
-              ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
-              : "fixed top-1/2 left-0 md:left-[5%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
-        }
-        style={
-          !isMobile && !isShortWindow && !scrolled
-            ? { left: leftOffset }
-            : undefined
-        }
-      >
-        {(scrolled && !(isMobile || isShortWindow)) || (isMobile || isShortWindow) ? (
-          <div className="transition-all duration-700">
-            <motion.h1
-              key="scrolled-title"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2 }}
-              className="text-[48px] font-bold"
-            >
-              Jerry Wu
-            </motion.h1>
-            <motion.h2
-              key="scrolled-subtitle"
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 1.2 }}
-              className="text-[#ffffff] text-[20px] md:text-xl text-gray-300 mt-1"
-            >
-              Software Engineer
-            </motion.h2>
-            <motion.div
-              key="scrolled-location"
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 1.2 }}
-              className="flex items-center mt-2 text-gray-400"
-            >
-              <MapPin className="h-4 w-4 mr-1" />
-              <span>London, UK 🇬🇧</span>
-            </motion.div>
-            {!isShortWindow && (
-              <motion.p
-                key="scrolled-description"
+        {/* Header always at the top for small windows, sticky/fixed for large */}
+        <div
+          ref={headerRef}
+          className={
+            isMobile || isShortWindow
+              ? "relative w-full pt-6 px-6 z-[200] mb-0"
+              : scrolled
+                ? "fixed top-0 left-0 w-full pt-6 md:pt-20 px-6 md:px-8 md:pl-8 lg:pl-32 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
+                : "fixed top-1/2 left-0 md:left-[5%] lg:left-[20%] transform -translate-y-1/2 px-6 md:px-8 z-[200] pointer-events-none transition-all duration-700 ease-in-out"
+          }
+          style={
+            !isMobile && !isShortWindow && !scrolled
+              ? { left: leftOffset }
+              : undefined
+          }
+        >
+          {(scrolled && !(isMobile || isShortWindow)) || (isMobile || isShortWindow) ? (
+            <div className="transition-all duration-700">
+              <motion.h1
+                key="scrolled-title"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2 }}
+                className="text-[48px] font-bold"
+              >
+                Jerry Wu
+              </motion.h1>
+              <motion.h2
+                key="scrolled-subtitle"
                 initial={{ opacity: 0, y: -5 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 1.2 }}
-                className="mt-3 max-w-[300px] md:max-w-[300px] text-[16px] text-gray-300"
+                transition={{ delay: 0.2, duration: 1.2 }}
+                className="text-[#ffffff] text-[20px] md:text-xl text-gray-300 mt-1"
               >
-                I build user-focused applications with AI in mind.
+                Software Engineer
+              </motion.h2>
+              <motion.div
+                key="scrolled-location"
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 1.2 }}
+                className="flex items-center mt-2 text-gray-400"
+              >
+                <MapPin className="h-4 w-4 mr-1" />
+                <span>London, UK 🇬🇧</span>
+              </motion.div>
+              {!isShortWindow && (
+                <motion.p
+                  key="scrolled-description"
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 1.2 }}
+                  className="mt-3 max-w-[300px] md:max-w-[300px] text-[16px] text-gray-300"
+                >
+                  I build user-focused applications with AI in mind.
+                </motion.p>
+              )}
+              {/* Always show social buttons below header on small windows */}
+              {(isMobile || isShortWindow) && (
+                <div className="mt-6">
+                  <SocialAndResume />
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <motion.h1
+                key="initial-title"
+                initial="initial"
+                animate={isTransitioning && !(isMobile || isShortWindow) ? "pixelate" : "initial"}
+                exit="exit"
+                variants={textVariants}
+                transition={{ duration: 1.2 }}
+                className="text-6xl md:text-[50px] lg:text-6xl md:pl-10 lg:pl-0 font-bold"
+              >
+                Hi, I'm Jerry Wu{" "}
+                <motion.span
+                  key="wave-emoji"
+                  animate={{
+                    rotate: [0, 10, 0],
+                    transformOrigin: "bottom right",
+                  }}
+                  transition={{
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatType: "loop",
+                    duration: 2,
+                    repeatDelay: 0,
+                  }}
+                  className="inline-block"
+                >
+                  👋
+                </motion.span>
+              </motion.h1>
+              <motion.p
+                key="initial-description"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.2 }}
+                className="mt-4 max-w-xs md:max-w-sm md:pl-10 lg:pl-0 text-sm md:text-lg text-#FFFFFF"
+              >
+                Software Engineer with a strong passion for AI and building user-centric solutions to real-world problems.
               </motion.p>
-            )}
-            {/* Always show social buttons below header on small windows */}
-            {(isMobile || isShortWindow) && (
-              <div className="mt-6">
+              {/* Social Media Icons and Resume Button - Initially under About Me */}
+              <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6 md:pl-10 lg:pl-0 ">
                 <SocialAndResume />
-              </div>
-            )}
-          </div>
-        ) : (
-          <>
-            <motion.h1
-              key="initial-title"
-              initial="initial"
-              animate={isTransitioning && !(isMobile || isShortWindow) ? "pixelate" : "initial"}
-              exit="exit"
-              variants={textVariants}
-              transition={{ duration: 1.2 }}
-              className="text-6xl md:text-[50px] lg:text-6xl md:pl-10 lg:pl-0 font-bold"
+              </motion.div>
+            </>
+          )}
+        </div>
+
+        {/* Sidebar Navigation (now for md and up) */}
+        {!isMobile && !isShortWindow && (
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{
+              opacity: scrolled ? 1 : 0,
+              x: scrolled ? 0 : -20,
+              pointerEvents: scrolled ? "auto" : "none",
+            }}
+            transition={{ duration: 0.5 }}
+            className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-[200] hidden md:block text-[12px]"
+          >
+            <nav className="space-y-6">
+              <NavItem
+                sectionRef={section1Ref}
+                label="About Me"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section1"
+              />
+              <NavItem
+                sectionRef={section2Ref}
+                label="Experiences"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section2"
+              />
+              <NavItem
+                sectionRef={section3Ref}
+                label="Education"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section3"
+              />
+              <NavItem
+                sectionRef={section4Ref}
+                label="Projects"
+                scrollToSection={scrollToSection}
+                activeSection={activeSection}
+                sectionId="section4"
+              />
+            </nav>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="mt-24"
             >
-              Hi, I'm Jerry Wu{" "}
-              <motion.span
-                key="wave-emoji"
-                animate={{
-                  rotate: [0, 10, 0],
-                  transformOrigin: "bottom right",
-                }}
-                transition={{
-                  repeat: Number.POSITIVE_INFINITY,
-                  repeatType: "loop",
-                  duration: 2,
-                  repeatDelay: 0,
-                }}
-                className="inline-block"
-              >
-                👋
-              </motion.span>
-            </motion.h1>
-            <motion.p
-              key="initial-description"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2 }}
-              className="mt-4 max-w-xs md:max-w-sm md:pl-10 lg:pl-0 text-sm md:text-lg text-#FFFFFF"
-            >
-              Software Engineer with a strong passion for AI and building user-centric solutions to real-world problems.
-            </motion.p>
-            {/* Social Media Icons and Resume Button - Initially under About Me */}
-            <motion.div key="initial-social" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="mt-6 md:pl-10 lg:pl-0 ">
               <SocialAndResume />
             </motion.div>
-          </>
+          </motion.div>
         )}
-      </div>
 
-      {/* Sidebar Navigation (now for md and up) */}
-      {!isMobile && !isShortWindow && (
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{
-            opacity: scrolled ? 1 : 0,
-            x: scrolled ? 0 : -20,
-            pointerEvents: scrolled ? "auto" : "none",
-          }}
-          transition={{ duration: 0.5 }}
-          className="fixed left-8 lg:left-32 top-[45%] transform -translate-y-1/2 z-[200] hidden md:block text-[12px]"
-        >
-          <nav className="space-y-6">
-            <NavItem
-              sectionRef={section1Ref}
-              label="About Me"
-              scrollToSection={scrollToSection}
-              activeSection={activeSection}
-              sectionId="section1"
-            />
-            <NavItem
-              sectionRef={section2Ref}
-              label="Experiences"
-              scrollToSection={scrollToSection}
-              activeSection={activeSection}
-              sectionId="section2"
-            />
-            <NavItem
-              sectionRef={section3Ref}
-              label="Education"
-              scrollToSection={scrollToSection}
-              activeSection={activeSection}
-              sectionId="section3"
-            />
-            <NavItem
-              sectionRef={section4Ref}
-              label="Projects"
-              scrollToSection={scrollToSection}
-              activeSection={activeSection}
-              sectionId="section4"
-            />
-          </nav>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="mt-24"
-          >
-            <SocialAndResume />
-          </motion.div>
-        </motion.div>
-      )}
-
-      {/* Hero Section (background, lanyard, etc.) now for md and up */}
-      {!(isMobile || isShortWindow) && (
-        <div className="relative min-h-[120vh] h-[120vh]">
-          <div className="absolute top-0 right-0 w-full h-[600px] pointer-events-none z-[100] overflow-visible">
-            <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
+        {/* Hero Section (background, lanyard, etc.) now for md and up */}
+        {!(isMobile || isShortWindow) && (
+          <div className="relative min-h-[120vh] h-[120vh]">
+            <div className="absolute top-0 right-0 w-full h-[600px] pointer-events-none z-[100] overflow-visible">
+              <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* About Me section (no overlap, always below header) */}
-      <section ref={section1Ref} id="section1" className="relative z-[150] py-20">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
-        >
-          <h2 className="text-[20px] font-semibold mb-5">About Me</h2>
-          <div>
-            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>I'm a software engineer passionate about building intuitive, <span style={{ color: 'white', fontWeight: 'bold' }}>full-stack</span> applications that bring together clean design, rich interactivity, and smart systems. My favorite work blends UI/UX precision with the possibilities of <span style={{ color: 'white', fontWeight: 'bold' }}>AI</span> — from thoughtful animations to integrating large language models that enhance user experience.</p>
-            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>Currently, I'm a Software Engineering Intern at Goodnotes (starting soon!), where I'll be joining the B2B team. I'm also a second-year Computer Science student at UCL, where I've been actively involved in both technical and <span style={{ color: 'white', fontWeight: 'bold' }}>leadership</span> roles — serving as the Technical Director at the UCL Legal Tech Society, Data Lead at the UCL Data Visualisation Society, and Vice President of Growth at the UCL FinTech Society.</p>
-            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>My technical interests span <span style={{ color: 'white', fontWeight: 'bold' }}>full-stack development</span>, <span style={{ color: 'white', fontWeight: 'bold' }}>machine learning</span>, and <span style={{ color: 'white', fontWeight: 'bold' }}>AI integration</span>. I work primarily with Python, TypeScript, React, and PostgreSQL. I'm particularly excited about opportunities at the intersection of ML/AI and product — and am currently open to research or applied work involving LLMs or intelligent systems.</p>
-            <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300">Outside of tech, you'll probably find me on a<span className="volleyball-cursor font-bold text-white mx-1">volleyball</span>court or<span className="cooking-cursor font-bold text-white mx-1">cooking</span>something new in the kitchen.</p>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Section 2 - Experiences */}
-      <section ref={section2Ref} id="section2" className="relative z-[150] py-20">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
-        >
-          <h2 className="text-[20px] font-semibold mb-5">Experience</h2>
-          
-          {/* GoodNotes */}
+        {/* About Me section (no overlap, always below header) */}
+        <section ref={section1Ref} id="section1" className="relative z-[150] py-20">
           <motion.div
-            onHoverStart={() => setHovered('goodnotes')}
-            onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
           >
-            <BorderTrail
-              className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
-              style={{
-                boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
-              }}
-              size={60}
-            />
-            <div className="flex flex-row gap-8 items-start">
-              {/* Date on the left */}
-              <div className="min-w-[115px] flex flex-col items-start pt-1">
-                <span className="text-[12px] font-semibold text-gray-400 tracking-widest">2025 — PRESENT</span>
-              </div>
-              {/* Main content on the right */}
-              <div className="flex-1 flex flex-col">
-                <div className="flex flex-row items-center gap-2">
-                  <h3 className="text-lg font-semibold">Software Engineer Intern @ GoodNotes</h3>
-                  {/* Optionally add a link or icon here */}
-                </div>
-                {/*<p className="text-[14px] leading-relaxed text-[#cccccc] mb-3 mt-1 transition-colors duration-300">
-                  B2B Team - Working on enterprise solutions and integrations.
-                </p>*/}
-                {/* Tech stack (optional, add if you want) */}
-                {/* <div className="flex flex-wrap gap-2 mt-2">
-                  {["React", "TypeScript", "Node.js", "GraphQL"].map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#7de2d1] font-medium transition-colors duration-300">{tech}</span>
-                  ))}
-                </div> */}
-              </div>
-            </div>
-
-          </motion.div>
-
-          
-        </motion.div>
-      </section>
-
-      {/* Section 3 - Education */}
-      <section ref={section3Ref} id="section3" className="relative z-[150] py-20">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
-        >
-          <h2 className="text-[20px] font-semibold mb-5">Education</h2>
-          <motion.div
-            whileHover="hover"
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
-          >
-            <div className="flex gap-4 items-center mid-md-stack-inner">
-              {/* Layer 1: Image full width on mid-md-stack */}
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
-                <img src="/ucl.png" alt="ucl" className="object-cover w-full h-full" />
-              </div>
-              {/* Layer 2: Title & Date */}
-              <div className="flex flex-col mid-md-stack-title">
-                <div className="flex justify-between items-center mid-md-stack-title-row">
-                  <h3 className="text-lg font-semibold">University College London</h3>
-                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2023 - Jun 2026</p>
-                </div>
-                {/* Layer 3: Description */}
-                <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
-                  <i>Bachelor of Science in Computer Science</i>
-                </p>
-                {/* Layer 4: Activities & Societies */}
-                <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
-                  <p><b>Activities & Societies</b>: Vice President @ UCL FinTech Society, Data Lead @ UCL DataViz Society, Technical Director @ UCL Legal Tech Society, Volleyball Mixed Team @ LUSL UCL Mixed Team</p>
-                </div>
-              </div>
+            <h2 className="text-[20px] font-semibold mb-5">About Me</h2>
+            <div>
+              <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>I'm a software engineer passionate about building intuitive, <span style={{ color: 'white', fontWeight: 'bold' }}>full-stack</span> applications that bring together clean design, rich interactivity, and smart systems. My favorite work blends UI/UX precision with the possibilities of <span style={{ color: 'white', fontWeight: 'bold' }}>AI</span> — from thoughtful animations to integrating large language models that enhance user experience.</p>
+              <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>Currently, I'm a Software Engineering Intern at Goodnotes (starting soon!), where I'll be joining the B2B team. I'm also a second-year Computer Science student at UCL, where I've been actively involved in both technical and <span style={{ color: 'white', fontWeight: 'bold' }}>leadership</span> roles — serving as the Technical Director at the UCL Legal Tech Society, Data Lead at the UCL Data Visualisation Society, and Vice President of Growth at the UCL FinTech Society.</p>
+              <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300" style={{ marginBottom: '1em' }}>My technical interests span <span style={{ color: 'white', fontWeight: 'bold' }}>full-stack development</span>, <span style={{ color: 'white', fontWeight: 'bold' }}>machine learning</span>, and <span style={{ color: 'white', fontWeight: 'bold' }}>AI integration</span>. I work primarily with Python, TypeScript, React, and PostgreSQL. I'm particularly excited about opportunities at the intersection of ML/AI and product — and am currently open to research or applied work involving LLMs or intelligent systems.</p>
+              <p className="text-[16px] leading-relaxed text-[#cccccc] transition-colors duration-300">Outside of tech, you'll probably find me on a<span className="volleyball-cursor font-bold text-white mx-1">volleyball</span>court or<span className="cooking-cursor font-bold text-white mx-1">cooking</span>something new in the kitchen.</p>
             </div>
           </motion.div>
+        </section>
 
+        {/* Section 2 - Experiences */}
+        <section ref={section2Ref} id="section2" className="relative z-[150] py-20">
           <motion.div
-            whileHover="hover"
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
           >
-            <div className="flex gap-4 items-center mid-md-stack-inner">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
-                <img src="/asm.png" alt="ASM" className="object-cover w-full h-full" />
-              </div>
-              <div className="flex flex-col mid-md-stack-title">
-                <div className="flex justify-between items-center mid-md-stack-title-row">
-                  <h3 className="text-lg font-semibold">American School of Milan</h3>
-                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Aug 2019 - May 2023</p>
+            <h2 className="text-[20px] font-semibold mb-5">Experience</h2>
+            
+            {/* GoodNotes */}
+            <motion.div
+              onHoverStart={() => setHovered('goodnotes')}
+              onHoverEnd={() => setHovered(null)}
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card"
+            >
+              <BorderTrail
+                className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300"
+                style={{
+                  boxShadow: "0px 0px 30px 15px rgb(255 255 255 / 25%), 0 0 50px 30px rgb(0 0 0 / 25%)",
+                }}
+                size={60}
+              />
+              <div className="flex flex-row gap-8 items-start">
+                {/* Date on the left */}
+                <div className="min-w-[115px] flex flex-col items-start pt-1">
+                  <span className="text-[12px] font-semibold text-gray-400 tracking-widest">2025 — PRESENT</span>
                 </div>
-                <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
-                  <i>International Baccalaureate Diploma</i>
-                </p>
-                <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
-                  <p><b>Activities & Societies:</b> Tech Team Leader, Varsity Volleyball, Varsity Basketball, National Honor Society Member</p>
-                  <p><b>Awards:</b> Honor Roll, Computer Science Award</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-          
-        </motion.div>
-      </section>
-
-      {/* Section 4 - Projects */}
-      <section ref={section4Ref} id="section4" className="relative z-[150] py-20">
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
-        >
-          <h2 className="text-[20px] font-semibold mb-5">Projects</h2>
-
-          {/* Personal Portfolio */}
-          <motion.div
-            onHoverStart={() => setHovered('portfolio')}
-            onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
-          >
-            <div className="flex gap-4 items-center mid-md-stack-inner">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
-                <img src="/portfolio.png" alt="Personal Portfolio" className="object-contain w-full h-full" />
-              </div>
-              <div className="flex flex-col mid-md-stack-title">
-                <div className="flex justify-between items-center mid-md-stack-title-row">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold">Portfolio Website</h3>
-                    <motion.a
-                      href="https://github.com/JerryWu0430/my_portfolio"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex pointer-events-auto"
-                      variants={arrowVariants}
-                      initial="initial"
-                      animate={hovered === 'portfolio' ? 'hover' : 'initial'}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                    </motion.a>
+                {/* Main content on the right */}
+                <div className="flex-1 flex flex-col">
+                  <div className="flex flex-row items-center gap-2">
+                    <h3 className="text-lg font-semibold">Software Engineer Intern @ GoodNotes</h3>
+                    {/* Optionally add a link or icon here */}
                   </div>
-                  <p className="text-xs text-[#cccccc] transition-colors duration-300">May 2025</p>
-                </div>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
-                  Designed, built, and maintained this portfolio to showcase my projects, experience, and skills. Focused on modern UI/UX, smooth animations, and responsive design using the latest web technologies.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Next.js", "React", "TypeScript", "Tailwind CSS"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
+                  {/*<p className="text-[14px] leading-relaxed text-[#cccccc] mb-3 mt-1 transition-colors duration-300">
+                    B2B Team - Working on enterprise solutions and integrations.
+                  </p>*/}
+                  {/* Tech stack (optional, add if you want) */}
+                  {/* <div className="flex flex-wrap gap-2 mt-2">
+                    {["React", "TypeScript", "Node.js", "GraphQL"].map((tech) => (
+                      <span key={tech} className="px-3 py-1 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#7de2d1] font-medium transition-colors duration-300">{tech}</span>
+                    ))}
+                  </div> */}
                 </div>
               </div>
-            </div>
-          </motion.div>
 
-          {/* ReadingStar */}
+            </motion.div>
+
+            
+          </motion.div>
+        </section>
+
+        {/* Section 3 - Education */}
+        <section ref={section3Ref} id="section3" className="relative z-[150] py-20">
           <motion.div
-            onHoverStart={() => setHovered('readingstar')}
-            onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
           >
-            <div className="flex gap-4 items-center mid-md-stack-inner">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
-                <img 
-                  src="/readingstar.png" 
-                  alt="ReadingStar" 
-                />
-              </div>
-              <div className="flex flex-col mid-md-stack-title">
-                <div className="flex justify-between items-center mid-md-stack-title-row">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold ">ReadingStar</h3>
-                    <motion.a
-                      href="https://github.com/JerryWu0430/readingstar"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex pointer-events-auto"
-                      variants={arrowVariants}
-                      initial="initial"
-                      animate={hovered === 'readingstar' ? 'hover' : 'initial'}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                    </motion.a>
+            <h2 className="text-[20px] font-semibold mb-5">Education</h2>
+            <motion.div
+              whileHover="hover"
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            >
+              <div className="flex gap-4 items-center mid-md-stack-inner">
+                {/* Layer 1: Image full width on mid-md-stack */}
+                <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                  <img src="/ucl.png" alt="ucl" className="object-cover w-full h-full" />
+                </div>
+                {/* Layer 2: Title & Date */}
+                <div className="flex flex-col mid-md-stack-title">
+                  <div className="flex justify-between items-center mid-md-stack-title-row">
+                    <h3 className="text-lg font-semibold">University College London</h3>
+                    <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2023 - Jun 2026</p>
                   </div>
-                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2024 - Mar 2025</p>
-                </div>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
-                  Collaborated with Intel and National Autistic Society to develop a karaoke application gamifying speech therapy to help neurodivergent children improve speech fluency. Developed a full-stack Windows application using OpenVino speech matching with React Native.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Python", "OpenVino", "React Native", "JavaScript", "TypeScript"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
+                  {/* Layer 3: Description */}
+                  <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
+                    <i>Bachelor of Science in Computer Science</i>
+                  </p>
+                  {/* Layer 4: Activities & Societies */}
+                  <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
+                    <p><b>Activities & Societies</b>: Vice President @ UCL FinTech Society, Data Lead @ UCL DataViz Society, Technical Director @ UCL Legal Tech Society, Volleyball Mixed Team @ LUSL UCL Mixed Team</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* EarnIt */}
+            <motion.div
+              whileHover="hover"
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            >
+              <div className="flex gap-4 items-center mid-md-stack-inner">
+                <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                  <img src="/asm.png" alt="ASM" className="object-cover w-full h-full" />
+                </div>
+                <div className="flex flex-col mid-md-stack-title">
+                  <div className="flex justify-between items-center mid-md-stack-title-row">
+                    <h3 className="text-lg font-semibold">American School of Milan</h3>
+                    <p className="text-xs text-[#cccccc] transition-colors duration-300">Aug 2019 - May 2023</p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-[#cccccc] mt-0 mb-2">
+                    <i>International Baccalaureate Diploma</i>
+                  </p>
+                  <div className="text-sm leading-relaxed text-[#cccccc] mb-0 transition-colors duration-300">
+                    <p><b>Activities & Societies:</b> Tech Team Leader, Varsity Volleyball, Varsity Basketball, National Honor Society Member</p>
+                    <p><b>Awards:</b> Honor Roll, Computer Science Award</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+          </motion.div>
+        </section>
+
+        {/* Section 4 - Projects */}
+        <section ref={section4Ref} id="section4" className="relative z-[150] py-20">
           <motion.div
-            onHoverStart={() => setHovered('earnit')}
-            onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="w-full md:w-[60%] lg:w-[55%] xl:w-[50%] md:ml-auto md:mr-0 xl:ml-auto xl:mr-24 ml-0 mr-0 px-6 md:px-12 lg:ml-auto lg:mr-0 lg:px-12 flex flex-col justify-center group/section"
           >
-            <div className="flex gap-4 items-center mid-md-stack-inner">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
-                <img 
-                  src="/earnit.png" 
-                  alt="EarnIt" 
-                />
-              </div>
-              <div className="flex flex-col mid-md-stack-title">
-                <div className="flex justify-between items-center mid-md-stack-title-row">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold">EarnIt</h3>
-                    <motion.a
-                      href="https://github.com/JerryWu0430/EarnIt"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex pointer-events-auto"
-                      variants={arrowVariants}
-                      initial="initial"
-                      animate={hovered === 'earnit' ? 'hover' : 'initial'}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                    </motion.a>
-                  </div>
-                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Feb 2025</p>
-                </div>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
-                  Developed an iOS rewards-based productivity application that allows users to earn screen time through completion of quizzes, specifically targeting highschoolers undergoing GCSE or A-Level to further promote gamified revision.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Swift", "Firebase", "PostgreSQL", "CSS", "Figma"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            <h2 className="text-[20px] font-semibold mb-5">Projects</h2>
 
-          {/* Yusuf AI */}
-          <motion.div
-            onHoverStart={() => setHovered('yusuf')}
-            onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
-          >
-            <div className="flex gap-4 items-center mid-md-stack-inner">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
-                <img 
-                  src="/yusuf.png" 
-                  alt="Yusuf AI" 
-                />
-              </div>
-              <div className="flex flex-col mid-md-stack-title">
-                <div className="flex justify-between items-center mid-md-stack-title-row">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold">Yusuf AI</h3>
-                    <motion.a
-                      href="https://github.com/JerryWu0430/Yusuf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex pointer-events-auto"
-                      variants={arrowVariants}
-                      initial="initial"
-                      animate={hovered === 'yusuf' ? 'hover' : 'initial'}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                    </motion.a>
+            {/* Personal Portfolio */}
+            <motion.div
+              onHoverStart={() => setHovered('portfolio')}
+              onHoverEnd={() => setHovered(null)}
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            >
+              <div className="flex gap-4 items-center mid-md-stack-inner">
+                <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                  <img src="/portfolio.png" alt="Personal Portfolio" className="object-contain w-full h-full" />
+                </div>
+                <div className="flex flex-col mid-md-stack-title">
+                  <div className="flex justify-between items-center mid-md-stack-title-row">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold">Portfolio Website</h3>
+                      <motion.a
+                        href="https://github.com/JerryWu0430/my_portfolio"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex pointer-events-auto"
+                        variants={arrowVariants}
+                        initial="initial"
+                        animate={hovered === 'portfolio' ? 'hover' : 'initial'}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.a>
+                    </div>
+                    <p className="text-xs text-[#cccccc] transition-colors duration-300">May 2025</p>
                   </div>
-                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Dec 2024</p>
-                </div>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
-                  Developed a web application designed to analyze CVs and provide professional summaries, job recommendations, and other related functionalities. Leveraged Groq's vision model and Coresignal's API.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Python", "Flask", "Groq", "Coresignal API", "HTML", "CSS", "JavaScript"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* OpenAnnot */}
-          <motion.div
-            onHoverStart={() => setHovered('openannot')}
-            onHoverEnd={() => setHovered(null)}
-            className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
-          >
-            <div className="flex gap-4 items-center mid-md-stack-inner">
-              <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
-                <img 
-                  src="/openannot.png" 
-                  alt="OpenAnnot" 
-                />
-              </div>
-              <div className="flex flex-col mid-md-stack-title">
-                <div className="flex justify-between items-center mid-md-stack-title-row">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold">OpenAnnot</h3>
-                    <motion.a
-                      href="https://github.com/JerryWu0430/OpenAnnot"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex pointer-events-auto"
-                      variants={arrowVariants}
-                      initial="initial"
-                      animate={hovered === 'openannot' ? 'hover' : 'initial'}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
-                    </motion.a>
+                  <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                    Designed, built, and maintained this portfolio to showcase my projects, experience, and skills. Focused on modern UI/UX, smooth animations, and responsive design using the latest web technologies.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Next.js", "React", "TypeScript", "Tailwind CSS"].map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                    ))}
                   </div>
-                  <p className="text-xs text-[#cccccc] transition-colors duration-300">Oct 2024</p>
-                </div>
-                <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
-                  Developed a decentralized data annotation platform using Rust and Stellar blockchain hosted with Next.js. Implemented smart contracts for transparent, scalable data labelling and integrated Stellar for global payments.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {["Rust", "Stellar", "Next.js"].map((tech) => (
-                    <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
-                  ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-        </motion.div>
-      </section>
-    </main>
+            {/* ReadingStar */}
+            <motion.div
+              onHoverStart={() => setHovered('readingstar')}
+              onHoverEnd={() => setHovered(null)}
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            >
+              <div className="flex gap-4 items-center mid-md-stack-inner">
+                <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                  <img 
+                    src="/readingstar.png" 
+                  />
+                </div>
+                <div className="flex flex-col mid-md-stack-title">
+                  <div className="flex justify-between items-center mid-md-stack-title-row">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold ">ReadingStar</h3>
+                      <motion.a
+                        href="https://github.com/JerryWu0430/readingstar"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex pointer-events-auto"
+                        variants={arrowVariants}
+                        initial="initial"
+                        animate={hovered === 'readingstar' ? 'hover' : 'initial'}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.a>
+                    </div>
+                    <p className="text-xs text-[#cccccc] transition-colors duration-300">Sep 2024 - Mar 2025</p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                    Collaborated with Intel and National Autistic Society to develop a karaoke application gamifying speech therapy to help neurodivergent children improve speech fluency. Developed a full-stack Windows application using OpenVino speech matching with React Native.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Python", "OpenVino", "React Native", "JavaScript", "TypeScript"].map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* EarnIt */}
+            <motion.div
+              onHoverStart={() => setHovered('earnit')}
+              onHoverEnd={() => setHovered(null)}
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            >
+              <div className="flex gap-4 items-center mid-md-stack-inner">
+                <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                  <img 
+                    src="/earnit.png" 
+                  />
+                </div>
+                <div className="flex flex-col mid-md-stack-title">
+                  <div className="flex justify-between items-center mid-md-stack-title-row">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold">EarnIt</h3>
+                      <motion.a
+                        href="https://github.com/JerryWu0430/EarnIt"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex pointer-events-auto"
+                        variants={arrowVariants}
+                        initial="initial"
+                        animate={hovered === 'earnit' ? 'hover' : 'initial'}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.a>
+                    </div>
+                    <p className="text-xs text-[#cccccc] transition-colors duration-300">Feb 2025</p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                    Developed an iOS rewards-based productivity application that allows users to earn screen time through completion of quizzes, specifically targeting highschoolers undergoing GCSE or A-Level to further promote gamified revision.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Swift", "Firebase", "PostgreSQL", "CSS", "Figma"].map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Yusuf AI */}
+            <motion.div
+              onHoverStart={() => setHovered('yusuf')}
+              onHoverEnd={() => setHovered(null)}
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            >
+              <div className="flex gap-4 items-center mid-md-stack-inner">
+                <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                  <img 
+                    src="/yusuf.png" 
+                  />
+                </div>
+                <div className="flex flex-col mid-md-stack-title">
+                  <div className="flex justify-between items-center mid-md-stack-title-row">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold">Yusuf AI</h3>
+                      <motion.a
+                        href="https://github.com/JerryWu0430/Yusuf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex pointer-events-auto"
+                        variants={arrowVariants}
+                        initial="initial"
+                        animate={hovered === 'yusuf' ? 'hover' : 'initial'}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.a>
+                    </div>
+                    <p className="text-xs text-[#cccccc] transition-colors duration-300">Dec 2024</p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                    Developed a web application designed to analyze CVs and provide professional summaries, job recommendations, and other related functionalities. Leveraged Groq's vision model and Coresignal's API.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Python", "Flask", "Groq", "Coresignal API", "HTML", "CSS", "JavaScript"].map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* OpenAnnot */}
+            <motion.div
+              onHoverStart={() => setHovered('openannot')}
+              onHoverEnd={() => setHovered(null)}
+              className="backdrop-blur-[0.5px] border border-transparent rounded-2xl p-6 mb-5 transition-all duration-300 hover:border-white/20 hover:backdrop-blur-md hover:shadow-[0_6px_24px_rgba(0,0,0,0.4)] hover:-translate-y-1 group-hover/section:text-white/50 group-hover/section:opacity-50 hover:!opacity-100 hover:!text-white relative group/card mid-md-stack"
+            >
+              <div className="flex gap-4 items-center mid-md-stack-inner">
+                <div className="w-[160px] h-[100px] relative rounded-lg overflow-hidden flex-shrink-0 bg-[rgba(26,26,26,0.5)] mid-md-stack-img">
+                  <img 
+                    src="/openannot.png" 
+                  />
+                </div>
+                <div className="flex flex-col mid-md-stack-title">
+                  <div className="flex justify-between items-center mid-md-stack-title-row">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-semibold">OpenAnnot</h3>
+                      <motion.a
+                        href="https://github.com/JerryWu0430/OpenAnnot"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex pointer-events-auto"
+                        variants={arrowVariants}
+                        initial="initial"
+                        animate={hovered === 'openannot' ? 'hover' : 'initial'}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <ArrowUpRight className="w-4 h-4 text-[#cccccc]" />
+                      </motion.a>
+                    </div>
+                    <p className="text-xs text-[#cccccc] transition-colors duration-300">Oct 2024</p>
+                  </div>
+                  <p className="text-sm leading-relaxed text-[#cccccc] mb-3 mt-2 transition-colors duration-300">
+                    Developed a decentralized data annotation platform using Rust and Stellar blockchain hosted with Next.js. Implemented smart contracts for transparent, scalable data labelling and integrated Stellar for global payments.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Rust", "Stellar", "Next.js"].map((tech) => (
+                      <span key={tech} className="px-2 py-0.5 bg-[rgba(26,26,26,0.85)] rounded-full text-xs text-[#cccccc] transition-colors duration-300">{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </motion.div>
+        </section>
+      </main>
+    </>
   )
 }
