@@ -1,12 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Preloader({ onFinish }: { onFinish: () => void }) {
+  const varaInitialized = useRef(false);
+
   useEffect(() => {
     // Clean up any previous SVGs in the container
     const container = document.getElementById("container");
     if (container) {
       container.innerHTML = "";
     }
+
+    // Guard: Only initialize Vara once per mount
+    if (varaInitialized.current) return;
+    varaInitialized.current = true;
 
     // Only add the script if it's not already present
     const existingScript = document.querySelector('script[src*="vara.min.js"]');
@@ -65,6 +71,7 @@ export default function Preloader({ onFinish }: { onFinish: () => void }) {
       if (container) {
         container.innerHTML = "";
       }
+      varaInitialized.current = false;
       // Optionally, remove the script if you want, but not necessary if only loaded once
     };
   }, [onFinish]);
