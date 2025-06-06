@@ -13,25 +13,9 @@ export default function Preloader({ onFinish }: { onFinish: () => void }) {
       container.innerHTML = "";
     }
 
-    // Guard: Only initialize Vara once per mount and globally
+    // Guard: Only initialize Vara once per mount
     if (varaInitialized.current) return;
     varaInitialized.current = true;
-    if ((window as any).__varaStarted) return;
-    (window as any).__varaStarted = true;
-
-    // Only add the script if it's not already present
-    if (!(window as any).__varaLoaded) {
-      const script = document.createElement("script");
-      script.src = "https://cdn.jsdelivr.net/npm/vara@1.4.0/lib/vara.min.js";
-      script.async = true;
-      script.onload = () => {
-        (window as any).__varaLoaded = true;
-        startVara();
-      };
-      document.body.appendChild(script);
-    } else {
-      startVara();
-    }
 
     function startVara() {
       let fontSize = 72;
@@ -61,6 +45,20 @@ export default function Preloader({ onFinish }: { onFinish: () => void }) {
           }
         });
       });
+    }
+
+    // Only add the script if it's not already present
+    if (!(window as any).__varaLoaded) {
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/vara@1.4.0/lib/vara.min.js";
+      script.async = true;
+      script.onload = () => {
+        (window as any).__varaLoaded = true;
+        startVara();
+      };
+      document.body.appendChild(script);
+    } else {
+      startVara();
     }
 
     return () => {
