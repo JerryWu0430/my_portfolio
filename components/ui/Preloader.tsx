@@ -4,24 +4,33 @@ export default function Preloader({ onFinish }: { onFinish: () => void }) {
   const varaInitialized = useRef(false);
 
   useEffect(() => {
+    // Only run on client
+    if (typeof window === "undefined") return;
+
     // Clean up any previous SVGs in the container
     const container = document.getElementById("container");
     if (container) {
       container.innerHTML = "";
     }
 
-    // Guard: Only initialize Vara once per mount
+    // Guard: Only initialize Vara once per mount and globally
     if (varaInitialized.current) return;
     varaInitialized.current = true;
+    if ((window as any).__varaStarted) return;
+    (window as any).__varaStarted = true;
 
     // Only add the script if it's not already present
-    const existingScript = document.querySelector('script[src*="vara.min.js"]');
-    let script: HTMLScriptElement | null = null;
-    if (!existingScript) {
-      script = document.createElement("script");
+    if (!(window as any).__varaLoaded) {
+      const script = document.createElement("script");
       script.src = "https://cdn.jsdelivr.net/npm/vara@1.4.0/lib/vara.min.js";
       script.async = true;
+      script.onload = () => {
+        (window as any).__varaLoaded = true;
+        startVara();
+      };
       document.body.appendChild(script);
+    } else {
+      startVara();
     }
 
     function startVara() {
@@ -52,17 +61,6 @@ export default function Preloader({ onFinish }: { onFinish: () => void }) {
           }
         });
       });
-    }
-
-    if (window.Vara) {
-      startVara();
-    } else {
-      // If script is newly added, wait for it to load
-      if (script) {
-        script.onload = startVara;
-      } else if (existingScript) {
-        existingScript.addEventListener("load", startVara);
-      }
     }
 
     return () => {
