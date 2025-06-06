@@ -1,6 +1,8 @@
 import type React from "react"
 import "./globals.css"
 import type { Metadata } from "next"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Jerry Wu",
@@ -20,7 +22,9 @@ export default function RootLayout({
       </head>
       <body className="font-inter" suppressHydrationWarning>
         {children}
-      </body>
+        <SpeedInsights />
+        <Analytics />
+      </body> 
     </html>
   )
 }

@@ -15,6 +15,8 @@ import * as THREE from "three"
 import { BorderTrail } from "@/components/ui/border-trail"
 import Preloader from "@/components/ui/Preloader"
 import 'animate.css';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false)
